@@ -1,0 +1,6 @@
+{
+  "defaultLanguage": "en",
+  "environment": {
+    "test": "test"
+  }
+}
