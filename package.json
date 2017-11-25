@@ -1,0 +1,36 @@
+{
+  "name": "co.koa",
+  "version": "0.6.0",
+  "description": "A Model View Controller built on Koa",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "test-watch": "nodemon --exec 'npm test'"
+  },
+  "keywords": [
+    "nodeJS",
+    "Koa",
+    "MVC"
+  ],
+  "author": "Jay Edwards",
+  "license": "MIT",
+  "repository": "https://github.com/jaysaurus/Co.Koa",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "dependencies": "0.0.1",
+    "echo-handler": "^1.5.2",
+    "fs": "0.0.1-security",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-hbs-renderer": "^1.2.0",
+    "koa-router": "^7.2.1",
+    "mongoose": "^4.13.1",
+    "mongoose-type-number-enums": "^1.0.3",
+    "npm": "^5.5.1",
+    "validator": "^8.2.0"
+  },
+  "devDependencies": {
+    "jest": "^21.2.1",
+    "mockingoose": "^2.4.0"
+  }
+}
