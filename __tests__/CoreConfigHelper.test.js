@@ -1,7 +1,7 @@
-const CoreConfigHelper = require('../lib/CoreConfigHelper');
+const CoreConfigHelper = require('../lib/helpers/CoreConfigHelper');
 
 describe('CoreConfigHelper tests', () => {
-  const config = CoreConfigHelper('../__mocks__');
+  const config = CoreConfigHelper('../../__mocks__');
   test(
     'getEchoObject with valid env returns valid echo', () => {
       const success = config.getEchoObject('test');
@@ -11,6 +11,7 @@ describe('CoreConfigHelper tests', () => {
       expect(success).toHaveProperty('raw');
       expect(success).toHaveProperty('throw');
   });
+
   test(
     'getEchoObject invlid env returns undefined', () => {
       const error = config.getEchoObject(null);
@@ -24,6 +25,7 @@ describe('CoreConfigHelper tests', () => {
 
       expect(success).toBe('test');
   });
+
   test(
     'envConfig passed invalid environment', () => {
       const _spy = [];

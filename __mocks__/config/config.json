@@ -2,5 +2,7 @@
   "defaultLanguage": "en",
   "environment": {
     "test": "test"
-  }
+  },
+  "messageFolder": "./i18n/",
+  "useHBS": true
 }
