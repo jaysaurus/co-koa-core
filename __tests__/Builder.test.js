@@ -1,17 +1,17 @@
-const __root = __dirname.replace('/__tests__','');
+const __root = __dirname.replace('/__tests__','__mocks__');
 process.env.NODE_ENV = 'test';
 ConfigManager = require(`../lib/ConfigManager`);
 const __i18n = 'en'; // force i18n to be english for sake of tests.
 const logSpy = []
-const conf = new ConfigManager(__dirname.replace('/__tests__','')).build('test', logSpy);
+const conf = new ConfigManager(__dirname.replace('/__tests__','__mocks__')).build('test', logSpy);
 // VIRTUALS
-jest.mock(`${__dirname.replace('/__tests__','')}/api/controllers/test1Controller`, () => {
+jest.mock(`${__dirname.replace('/__tests__','__mocks__')}/api/controllers/test1Controller`, () => {
   return "I am the 1st fake file";
 }, {virtual: true});
-jest.mock(`${__dirname.replace('/__tests__','')}/api/controllers/test2Controller`, () => {
+jest.mock(`${__dirname.replace('/__tests__','__mocks__')}/api/controllers/test2Controller`, () => {
   return "I am the 2nd fake file";
 }, {virtual: true});
-jest.mock(`${__dirname.replace('/__tests__','')}/api/controllers/notAControllerTest`, () => {
+jest.mock(`${__dirname.replace('/__tests__','__mocks__')}/api/controllers/notAControllerTest`, () => {
   return "I am not a controller";
 }, {virtual: true});
 

@@ -42,7 +42,7 @@ module.exports = function CoKoaMVC (root, environment) {
     /*
     * BUILD CONTROLLERS
     */
-    new Builder(conf)
+    Builder(conf)
       .build('Controller', (controller, prefix) => {
         const routes = controller($.call);
         Object.keys(routes)
