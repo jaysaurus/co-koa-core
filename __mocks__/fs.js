@@ -36,7 +36,7 @@ function __setReadFileSyncToThrow (bool) {
 }
 
 function readFileSync (file) {
-  if (!fileSyncThrows) return { toString: () => { return 'test: '; } }
+  if (!fileSyncThrows) return { toString: () => { return 'test: '; } };
   else throw new Error();
 }
 
