@@ -1,6 +1,6 @@
-const AsyncHandler = require('../.core/handlers/AsyncHandler');
+const AsyncLibrary = require('../lib/helpers/resources/AsyncLibrary');
 
-describe('AsyncHandler integration tests', () => {
+describe('AsyncLibrary integration tests', () => {
   const mockItem = {
     1: {name: 'A'},
     2: {name: 'B'}
@@ -17,8 +17,9 @@ describe('AsyncHandler integration tests', () => {
     });
   }
 
+  const _async = AsyncLibrary();
+
   test('async operation .each()', async () => {
-    const _async = new AsyncHandler();
     const output = [];
     await _async.each([1,2], async (i) => {
       let val = await mockAsync(i);
@@ -30,7 +31,6 @@ describe('AsyncHandler integration tests', () => {
   });
 
   test('async operation .reduce()', async () => {
-    const _async = new AsyncHandler();
     let output = await _async.reduce([1,2], async (out, i) => {
       let val = await mockAsync(i);
       out.push(val);
@@ -39,5 +39,14 @@ describe('AsyncHandler integration tests', () => {
     expect(output.length).toBe(2);
     expect(output[0].name).toBe('A');
     expect(output[1].name).toBe('B');
+  });
+
+  test('async each exits gracefully if no items', async () => {
+    const output = [];
+    await _async.each([], async (out, i) => {
+      let val = await mockAsync(i);
+      output.push(val);
+    });
+    expect(output.length).toBe(0);
   });
 });

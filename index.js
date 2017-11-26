@@ -17,7 +17,7 @@ module.exports = function CoKoaMVC (root, environment) {
     const router = new Router();
 
     WelcomeMessage(conf).sayHello();
-    const $ = new DependencyManager(conf);
+    const $ = DependencyManager(conf);
 
     /*
     * SETUP MODELS
