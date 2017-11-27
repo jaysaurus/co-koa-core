@@ -1,6 +1,7 @@
 {
   "failed": "Failed to load {0}",
   "invalidDependency": "attempt to retrieve a dependency failed: {0}\n{1}",
+  "invalidDependencyFile": "Invalid {0} detected: {1} must be a function that receives a single argument and returns an object literal.",
   "invalidType": "dependency expects strings, but got: {0}.",
   "unsupported": "unsupported dependency format: {0}."
 }
