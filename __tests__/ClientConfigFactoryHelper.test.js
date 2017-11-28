@@ -1,7 +1,7 @@
-const CoreConfigHelper = require('../lib/helpers/CoreConfigHelper');
+const ClientConfigFactoryHelper = require('../lib/helpers/ClientConfigFactoryHelper');
 
-describe('CoreConfigHelper tests', () => {
-  const config = CoreConfigHelper('../../__mocks__');
+describe('ClientConfigFactoryHelper tests', () => {
+  const config = ClientConfigFactoryHelper('../../__mocks__');
   test(
     'getEchoObject with valid env returns valid echo', () => {
       const success = config.getEchoObject('test');
@@ -30,7 +30,6 @@ describe('CoreConfigHelper tests', () => {
     'envConfig passed invalid environment', () => {
       const _spy = [];
       const mockEcho = { throw: (string) => { _spy.push(string); } }
-
       const error = config.getEnvConfig(false, mockEcho);
 
       expect(_spy.length).toBe(1);

@@ -1,7 +1,7 @@
-const CoreConfig = require('../lib/CoreConfig.js');
+const ClientConfigFactory = require('../lib/ClientConfigFactory.js');
 const mockRoot = '../../__mocks__'
-describe('CoreConfig integration test (incorporating CoreConfigHelper & ClientConfig)', () => {
-  const config = CoreConfig(mockRoot);
+describe('ClientConfigFactory integration test (incorporating ClientConfigFactoryHelper & ClientConfig)', () => {
+  const config = ClientConfigFactory(mockRoot);
 
   test('build returns a valid new instance of client config', () => {
     const success = config.build('test');
@@ -26,21 +26,14 @@ describe('CoreConfig integration test (incorporating CoreConfigHelper & ClientCo
     }).toThrow(messages.fatalError);
   });
 
-  test('build cannot find i18n for exception helper does not have relevant message', () => {
-    jest.mock('../lib/helpers/CoreConfigHelper.js');
-    const config = CoreConfig(mockRoot);
-    expect(() => {
-      config.build(1);
-    }).toThrow('FATAL: Something went fatally wrong, ConfigManager could not find it\'s messages AND config.json was not understood. Your Co.Koa installation may have become corrupted.');
-  });
-
   test('build cannot find a component of the loaded helper object', () => {
-    jest.mock('../lib/helpers/CoreConfigHelper.js');
-    const config = CoreConfig(mockRoot);
-
-    expect(() => {
-      config.build('test')
-    }).toThrow('failed: Mock getEnvConfig threw an exception');
+    jest.mock('../lib/helpers/ClientConfigFactoryHelper.js');
+    const ClientConfigFactory1 = require('../lib/ClientConfigFactory.js');
+    try {
+    const config = ClientConfigFactory(mockRoot).build(1);
+  } catch (e) {
+    console.log(e.message)
+  }
   });
 
   test('quick cover of ClientConfig as an empty object', () => {
