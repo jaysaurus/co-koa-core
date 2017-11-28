@@ -4,13 +4,13 @@ const Router = require('koa-router');
 
 module.exports = function CoKoaMVC (root, environment) {
   const Builder = require('./lib/Builder');
-  const CoreConfig = require('./lib/CoreConfig');
+  const ClientConfigFactory = require('./lib/ClientConfigFactory');
   const DependencyManager = require('./lib/DependencyManager');
   const middleware = require(`${root}/config/middleware`);
-  const MongooseModeller = require('./lib/MongooseModeller');
+  const ModelFactory = require('./lib/ModelFactory');
   const WelcomeMessage = require('./lib/WelcomeMessage');
 
-  const conf = CoreConfig(root).build(environment);
+  const conf = ClientConfigFactory(root).build(environment);
 
   this.launch = () => {
     const app = new Koa().use(BodyParser());
@@ -22,7 +22,7 @@ module.exports = function CoKoaMVC (root, environment) {
     /*
     * SETUP MODELS
     */
-    new MongooseModeller(conf).model($.call);
+    ModelFactory(conf).build($.call);
 
     /*
     * SETUP VIEWS (OPTIONAL)
