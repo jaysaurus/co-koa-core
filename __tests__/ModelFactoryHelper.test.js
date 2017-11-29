@@ -3,10 +3,67 @@ const mongoose = require('mongoose');
 jest.mock('mongoose');
 
 describe('ModelFactoryHelper tests', () => {
-  test('assignVirtuals injects virtual from client model into mongoose model', () => {
-    const helper = ModelFactoryHelper();
+  //@DEPRECATED
+  // test('assignVirtuals injects virtual from client model into mongoose model', () => {
+  //   const helper = ModelFactoryHelper();
+  //   const observer = [];
+  //   const schema = {
+  //     virtual (arg) {
+  //       return {
+  //         get (a) {
+  //           observer.push(a);
+  //         },
+  //         set (a) {
+  //           observer.push(a);
+  //         }
+  //       }
+  //     }
+  //   }
+  //   const virtuals = {
+  //     foo: {
+  //       get: 1,
+  //       ignore: 123, // proof invalid props are ignored
+  //       set: 2
+  //     }
+  //   }
+  //   helper.assignVirtuals(schema, virtuals);
+  //   expect(observer.length).toBe(2);
+  //   expect(observer[0]).toBe(1);
+  //   expect(observer[1]).toBe(2);
+  //
+  //   // proof that method elegantly safeguards if get/set is absent from client obj
+  //   delete virtuals.foo.set
+  //   helper.assignVirtuals(schema, virtuals);
+  //   expect(observer.length).toBe(3);
+  //   expect(observer[2]).toBe(1);
+  // });
+
+  test('bindClientModelToSchema binds client\'s model to a mongoose schema', ()=> {
     const observer = [];
+    const model = {
+      index: {
+        foo: 'foo',
+        bar: 'bar'
+      },
+      methods: {
+        foz: 'foz',
+        baz: 'baz'
+      },
+      virtuals: {
+        mockVirtual: {
+          get: 1,
+          ignore: 123, // proof invalid props are ignored
+          set: 2
+        }
+      },
+      statics: {
+        mockStatic: 1
+      }
+    }
     const schema = {
+      index: {},
+      methods: {},
+      statics: {},
       virtual (arg) {
         return {
           get (a) {
@@ -18,21 +75,23 @@ describe('ModelFactoryHelper tests', () => {
         }
       }
     }
-    const virtuals = {
-      foo: {
-        get: 1,
-        ignore: 123, // proof invalid props are ignored
-        set: 2
-      }
-    }
-    helper.assignVirtuals(schema, virtuals);
+
+    const helper = ModelFactoryHelper();
+    const statics = helper.bindClientModelToSchema(model, schema);
+    // virtual tests
     expect(observer.length).toBe(2);
     expect(observer[0]).toBe(1);
     expect(observer[1]).toBe(2);
 
-    // proof that method elegantly safeguards if get/set is absent from client obj
-    delete virtuals.foo.set
-    helper.assignVirtuals(schema, virtuals);
+    // model tests
+    expect(statics.length).toBe(1);
+    expect(statics[0]).toBe('mockStatic');
+    expect(schema.methods).toEqual(model.methods);
+    expect(schema.index).toEqual(model.index);
+
+    // get/set missing, exit gracefully
+    delete model.virtuals.mockVirtual.set
+    helper.bindClientModelToSchema(model, schema);
     expect(observer.length).toBe(3);
     expect(observer[2]).toBe(1);
   });

@@ -1,4 +1,12 @@
 module.exports = {
+  setSchemaToClass () {
+    this.Schema = function (clientSchema, clientOptions) {
+      this.clientOptions = clientOptions;
+    };
+  },
+  model () {
+    return {};
+  },
   models: {
     mock: 'I am a mock model'
   },

@@ -2,7 +2,10 @@ process.env.NODE_ENV = 'test';
 const __i18n = 'en'; // force i18n to be english for sake of tests.
 const logSpy = []
 const conf = {
-  logger: { log: (msg) => {logSpy.push(msg)} },
+  logger: {
+    log (msg) { logSpy.push(msg); },
+    error (msg) { logSpy.push(msg); },
+  },
   i18n: 'en',
   root: __dirname.replace('__tests__', '__mocks__')
 }
@@ -19,7 +22,7 @@ jest.mock(`${__dirname.replace('__tests__', '__mocks__')}/api/controllers/notACo
 }, {virtual: true});
 
 jest.mock('fs');
-
+jest.mock('echo-handler');
 describe('how build assigns closure actions to multiple files in a directory', () => {
   const MOCK_FILE_INFO = {
     [`${conf.root}/api/controllers/test1Controller.js`]: 1,
@@ -38,14 +41,18 @@ describe('how build assigns closure actions to multiple files in a directory', (
       test.push(fake)
       test.push(objName);
     });
-    console.log(logSpy);
     expect(test.length).toBe(4);
     expect(test[0]).toMatch('I am the 1st fake file');
     expect(test[1]).toBe('test1');
     expect(test[2]).toMatch('I am the 2nd fake file');
     expect(test[3]).toBe('test2');
-    expect(logSpy.length).toBe(2);
-    expect(logSpy[0]).toBe(`Spotted 'notAControllerTest.js' in '/controllers'. Build will not action this item.`)
+
+    expect(logSpy[0]).toBe('invalidType');
+    expect(logSpy[1]).toBe('notAControllerTest.js');
+    expect(logSpy[2]).toBe('controllers');
+    expect(logSpy[3]).toBe('success');
+    expect(logSpy[4]).toBe('Controller');
+
   });
 
   test('build handles exceptions when directory does not exist', () => {
@@ -58,7 +65,9 @@ describe('how build assigns closure actions to multiple files in a directory', (
     } catch (e) {
       message = e.message;
     }
-    expect(message).toMatch(`directory 'controllers' doesn't exist`);
-    expect(message).toMatch('Failed to build Controllers: Error: ');
+
+    // the following message names will be requested from i18n.
+    expect(message).toMatch('buildFailed');
+    expect(message).toMatch('invalidDirectory');
   });
 });

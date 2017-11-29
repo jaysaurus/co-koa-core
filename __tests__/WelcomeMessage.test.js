@@ -9,7 +9,6 @@ describe('WelcomeMessage tests', () => {
     'sayHello renders WelcomeMessage.text if environment is development', () => {
       let expected = `test: Server launched at: ${new Date()}`
       let observer = '';
-      console.log()
       welcomeMessage({ environment: 'development' }).sayHello((str) => { observer += str });
       expect(observer).toBe(expected);
     });
