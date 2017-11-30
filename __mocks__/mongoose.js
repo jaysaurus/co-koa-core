@@ -1,11 +1,18 @@
 module.exports = {
-  setSchemaToClass () {
+  setSchemaToClass (spy) {
     this.Schema = function (clientSchema, clientOptions) {
+      spy.push('"instantiating" the Schema object');
       this.clientOptions = clientOptions;
+      this.spy = spy;
     };
   },
-  model () {
-    return {};
+  model (modelName, schema) {
+    schema.spy.push(`mongoose.model() was called for the model: "${modelName}"`);
+    return {
+      foo: function () { },
+      bar: function () { },
+      spy: []
+    };
   },
   models: {
     mock: 'I am a mock model'

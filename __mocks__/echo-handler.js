@@ -17,6 +17,10 @@ echoHandler.configure = function (conf) {
 
     throw (file, ...calls) {
       throw new Error(`${file}: ${calls}`);
+    },
+
+    raw (file, ...calls) {
+      return file;
     }
   };
 };
