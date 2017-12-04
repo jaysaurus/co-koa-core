@@ -2,7 +2,7 @@ const echoHandler = require('echo-handler');
 const mongoose = require('mongoose');
 jest.mock('mongoose');
 jest.mock('../lib/helpers/resources/AsyncLibrary.js');
-jest.mock('../lib/helpers/resources/AssetHandler.js');
+jest.mock('../lib/helpers/resources/AssetFactory.js');
 const DependencyManagerHelper = require('../lib/helpers/DependencyManagerHelper.js');
 describe('DependencyManagerHelper tests', () => {
   const libRoot = __dirname.replace('__tests__', 'lib');
