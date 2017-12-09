@@ -36,7 +36,7 @@ module.exports = function CoKoaMVC (root, environment) {
     /*
     * SETUP MIDDLEWARE
     */
-    const wares = middleware($.call, conf);
+    const wares = Object.assign({}, middleware($.call));
     Object.keys(wares).forEach(key => { app.use(wares[key]); });
 
     /*
