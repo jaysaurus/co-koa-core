@@ -58,9 +58,8 @@ describe('DependencyManagerHelper tests', () => {
       expect(helper.fetchToken(':echo')).toHaveProperty(prop);
     });
     expect(helper.fetchToken(':enums').mock[0]).toBe('a');
-    const arr = helper.fetchToken(':somethingElse')
-    expect(arr[0]).toBe(':somethingElse');
-    expect(arr[1]).toBe(helper.conf);
+    const result = helper.fetchToken(':somethingElse')
+    expect(result).toBe(':somethingElse');
   });
 
   test('getter throws an exception', () => {

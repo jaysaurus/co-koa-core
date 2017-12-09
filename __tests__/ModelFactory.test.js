@@ -1,6 +1,4 @@
 const ModelFactory = require('../lib/ModelFactory.js');
-// require('../lib/helpers/ModelFactoryHelper.js');
-// require('../lib/Builder.js');
 jest.mock('../lib/Builder.js');
 jest.mock('../lib/helpers/ModelFactoryHelper.js');
 

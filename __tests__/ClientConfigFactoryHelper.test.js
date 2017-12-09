@@ -13,10 +13,18 @@ describe('ClientConfigFactoryHelper tests', () => {
   });
 
   test(
-    'getEchoObject invlid env returns undefined', () => {
-      const error = config.getEchoObject(null);
+    'getEchoObject null env throws exception', () => {
+      expect(() => {
+        config.getEchoObject(null);
+      }).toThrow('Failed to create system logger, please check your Logger.js file');
+  });
 
-      expect(error).toBeUndefined();
+  test(
+    'getEchoObject invlid env throws exception', () => {
+      const echo = config.getEchoObject('invalid');
+      expect(() => {
+        echo.log('this will fail');
+      }).toThrow('Co.Koa Logger does not recognise the environment: "invalid"; check config.json and logger.js are both correct');
   });
 
   test(

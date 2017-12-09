@@ -9,7 +9,6 @@ describe('ClientConfigFactory integration test (incorporating ClientConfigFactor
       env: 'test',
       environment: 'test',
       i18n: 'en',
-      logger: console.log,
       messageFolder: `${mockRoot}/i18n/`,
       root: mockRoot,
       useHBS: true }
@@ -17,13 +16,17 @@ describe('ClientConfigFactory integration test (incorporating ClientConfigFactor
       expect(success).toHaveProperty(key);
       expect(success[key]).toBe(comparison[key]);
     });
+    expect(success.logger).toHaveProperty('log');
+    expect(typeof success.logger.log).toBe('function');
+    expect(success.logger).toHaveProperty('error');
+    expect(success.logger.error).toBe(console.error);
   });
 
   test('build is supplied an invalid environment', () => {
     messages = require('../lib/i18n/en.confManMessages.json')
     expect(() => {
       config.build(null);
-    }).toThrow(messages.fatalError);
+    }).toThrow('Failed to create system logger, please check your Logger.js file');
   });
 
   test('build cannot find a component of the loaded helper object', () => {
