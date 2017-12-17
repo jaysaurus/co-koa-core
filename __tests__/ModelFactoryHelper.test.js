@@ -3,41 +3,6 @@ const mongoose = require('mongoose');
 jest.mock('mongoose');
 
 describe('ModelFactoryHelper tests', () => {
-  //@DEPRECATED
-  // test('assignVirtuals injects virtual from client model into mongoose model', () => {
-  //   const helper = ModelFactoryHelper();
-  //   const observer = [];
-  //   const schema = {
-  //     virtual (arg) {
-  //       return {
-  //         get (a) {
-  //           observer.push(a);
-  //         },
-  //         set (a) {
-  //           observer.push(a);
-  //         }
-  //       }
-  //     }
-  //   }
-  //   const virtuals = {
-  //     foo: {
-  //       get: 1,
-  //       ignore: 123, // proof invalid props are ignored
-  //       set: 2
-  //     }
-  //   }
-  //   helper.assignVirtuals(schema, virtuals);
-  //   expect(observer.length).toBe(2);
-  //   expect(observer[0]).toBe(1);
-  //   expect(observer[1]).toBe(2);
-  //
-  //   // proof that method elegantly safeguards if get/set is absent from client obj
-  //   delete virtuals.foo.set
-  //   helper.assignVirtuals(schema, virtuals);
-  //   expect(observer.length).toBe(3);
-  //   expect(observer[2]).toBe(1);
-  // });
-
   test('bindClientModelToSchema binds client\'s model to a mongoose schema', ()=> {
     const observer = [];
     const model = {
@@ -118,5 +83,29 @@ describe('ModelFactoryHelper tests', () => {
     expect(spy.length).toBe(2);
     expect(spy[0]).toBe('invalidTypeName');
     expect(spy[1]).toBe('mockName');
+  });
+  test('injectSchemaObjectIds parses ObjectId, ForeignKey and FK', () => {
+    const fakeSchema = {
+      test1: {
+        type: 'ObjectId',
+        ignore: 'ignored',
+        test2: {
+          type: 'ForeignKey',
+          test3: {
+            type: 'FK'
+          }
+        }
+      },
+      type: 'FK'
+    }
+    const helper =
+      ModelFactoryHelper()
+        .injectSchemaObjectIds(fakeSchema);
+
+    expect(fakeSchema.type).toBe('OUTPUT');
+    expect(fakeSchema.test1.type).toBe('OUTPUT');
+    expect(fakeSchema.test1.ignore).toBe('ignored');
+    expect(fakeSchema.test1.test2.type).toBe('OUTPUT');
+    expect(fakeSchema.test1.test2.test3.type).toBe('OUTPUT');
   });
 });

@@ -24,6 +24,7 @@ describe('ModelFactory tests', () => {
   });
 
   test('buildModelCallback works as expected (method called from 1st spy array)', () => {
+    const localSchemaSpy = []
     const test = () => {
       return {
         index: {
@@ -33,6 +34,7 @@ describe('ModelFactory tests', () => {
         schema: {
           foy: 'foy',
           bay: 'bay',
+          spy: localSchemaSpy
         },
         methods: {
           foz: 'foz',
@@ -50,22 +52,21 @@ describe('ModelFactory tests', () => {
         }
       }
     }
-    conf.spy[1]['Model'](test, 'Test'); //<= this call is really buildModelCallback()
+    const result = conf.spy[1]['Model'](test, 'Test'); //<= this call is really buildModelCallback()
     const mongoose = require('mongoose');
+    expect(localSchemaSpy[0]).toBe('injectSchemaObjectIds was called');
 
     // my second evil minion has returned from its nefarious expedition.
     expect(spy2[0]).toBe('"instantiating" the Schema object');
-    expect(spy2[1]).toBe('bindClientModelToSchema was called');
-    expect(spy2[2]).toBe('mongoose.model() was called for the model: "Test"');
+    expect(spy2[1]).toBe('index was called');
+    expect(spy2[2]).toBe('bindClientModelToSchema was called');
+    expect(spy2[3]).toBe('mongoose.model() was called for the model: "Test"');
   });
 
-  test('buildModelCallback as above with options for completeness', () => {
+  test('buildModelCallback as above with options and no index for completeness', () => {
+    while (spy2.pop()) {} // empty spy2;
     const test = () => {
       return {
-        index: {
-          foo: 'foo',
-          bar: 'bar'
-        },
         schema: {
           foy: 'foy',
           bay: 'bay',

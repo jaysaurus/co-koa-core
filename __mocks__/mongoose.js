@@ -4,6 +4,7 @@ module.exports = {
       spy.push('"instantiating" the Schema object');
       this.clientOptions = clientOptions;
       this.spy = spy;
+      this.index = obj => spy.push('index was called');
     };
   },
   model (modelName, schema) {
@@ -19,6 +20,7 @@ module.exports = {
   },
   Schema: {
     Types: {
+      ObjectId: 'OUTPUT'
     }
   },
   SchemaType: {
