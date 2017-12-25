@@ -40,11 +40,16 @@ function readFileSync (file) {
   else throw new Error();
 }
 
+function createReadStream (arg) { return arg; }
+
+function statSync (arg) { return true; }
+
 fs.__setReadFileSyncToThrow = __setReadFileSyncToThrow;
 fs.__setMockFiles = __setMockFiles;
 fs.__setMockExistsSync = __setMockExistsSync;
 fs.readdirSync = readdirSync;
 fs.existsSync = existsSync;
 fs.readFileSync = readFileSync;
-
+fs.createReadStream = createReadStream;
+fs.statSync = statSync;
 module.exports = fs;

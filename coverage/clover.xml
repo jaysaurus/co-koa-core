@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1513522749301" clover="3.2.0">
-  <project timestamp="1513522749301" name="All files">
-    <metrics statements="259" coveredstatements="259" conditionals="93" coveredconditionals="93" methods="32" coveredmethods="32" elements="384" coveredelements="384" complexity="0" loc="259" ncloc="259" packages="3" files="13" classes="13">
+<coverage generated="1514213981046" clover="3.2.0">
+  <project timestamp="1514213981046" name="All files">
+    <metrics statements="260" coveredstatements="260" conditionals="94" coveredconditionals="94" methods="32" coveredmethods="32" elements="386" coveredelements="386" complexity="0" loc="260" ncloc="260" packages="3" files="13" classes="13">
       <package name="lib">
         <metrics statements="94" coveredstatements="94" conditionals="32" coveredconditionals="32" methods="8" coveredmethods="8"/>
         <file name="Builder.js" path="/home/jay/codeBase/co-koa-core/src/lib/Builder.js">
@@ -240,24 +240,25 @@
         </file>
       </package>
       <package name="lib.helpers.resources">
-        <metrics statements="58" coveredstatements="58" conditionals="21" coveredconditionals="21" methods="8" coveredmethods="8"/>
+        <metrics statements="59" coveredstatements="59" conditionals="22" coveredconditionals="22" methods="8" coveredmethods="8"/>
         <file name="AssetFactory.js" path="/home/jay/codeBase/co-koa-core/src/lib/helpers/resources/AssetFactory.js">
-          <metrics statements="15" coveredstatements="15" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="1"/>
-          <line num="3" count="1" type="stmt"/>
-          <line num="4" count="1" type="stmt"/>
-          <line num="6" count="1" type="stmt"/>
-          <line num="9" count="3" type="stmt"/>
-          <line num="10" count="3" type="stmt"/>
+          <metrics statements="16" coveredstatements="16" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+          <line num="3" count="2" type="stmt"/>
+          <line num="4" count="2" type="stmt"/>
+          <line num="6" count="2" type="stmt"/>
+          <line num="9" count="4" type="stmt"/>
+          <line num="10" count="4" type="stmt"/>
           <line num="11" count="2" type="stmt"/>
-          <line num="13" count="3" type="stmt"/>
-          <line num="19" count="3" type="stmt"/>
-          <line num="21" count="3" type="stmt"/>
-          <line num="23" count="3" type="stmt"/>
-          <line num="24" count="3" type="stmt"/>
-          <line num="25" count="3" type="stmt"/>
-          <line num="26" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="13" count="4" type="stmt"/>
+          <line num="19" count="4" type="stmt"/>
+          <line num="21" count="4" type="stmt"/>
+          <line num="23" count="4" type="stmt"/>
+          <line num="24" count="4" type="stmt"/>
+          <line num="25" count="4" type="stmt"/>
+          <line num="26" count="3" type="cond" truecount="2" falsecount="0"/>
           <line num="27" count="1" type="stmt"/>
-          <line num="35" count="3" type="stmt"/>
+          <line num="30" count="1" type="stmt"/>
+          <line num="38" count="4" type="stmt"/>
         </file>
         <file name="AsyncLibrary.js" path="/home/jay/codeBase/co-koa-core/src/lib/helpers/resources/AsyncLibrary.js">
           <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
