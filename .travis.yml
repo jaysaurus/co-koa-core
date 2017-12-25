@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - "8"
+repo_token: zfrzWe0zbA0njayFuMQAR6Mh2feq9X3iy
+branches:
+    only:
+      - master
+      - /^greenkeeper/.*$/
