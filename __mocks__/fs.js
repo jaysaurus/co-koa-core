@@ -52,4 +52,5 @@ fs.existsSync = existsSync;
 fs.readFileSync = readFileSync;
 fs.createReadStream = createReadStream;
 fs.statSync = statSync;
+
 module.exports = fs;

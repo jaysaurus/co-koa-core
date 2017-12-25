@@ -25,14 +25,14 @@
     "koa-hbs-renderer": "^1.2.0",
     "koa-router": "^7.3.0",
     "lodash.clonedeep": "^4.5.0",
-    "mongoose": "^4.13.5",
+    "mongoose": "^4.13.7",
     "mongoose-type-number-enums": "^1.0.4",
-    "npm": "^5.5.1",
+    "npm": "^5.6.0",
     "stampit": "^4.0.2",
     "validator": "^9.2.0"
   },
   "devDependencies": {
     "coveralls": "^3.0.0",
-    "jest": "=22.0.4"
+    "jest": "^22.0.4"
   }
 }
