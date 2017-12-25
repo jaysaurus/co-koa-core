@@ -4,7 +4,7 @@
   "description": "A Model View Controller built on Koa",
   "main": "app.js",
   "scripts": {
-    "test": "jest --coverage #&& cat ./coverage/lcov.info | coveralls",
+    "test": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "test-watch": "nodemon --exec 'npm test'"
   },
   "keywords": [
