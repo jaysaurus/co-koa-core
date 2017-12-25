@@ -4,5 +4,5 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/jaysaurus/co-koa-core/badge.svg)](https://snyk.io/test/github/jaysaurus/co-koa-core)
 
 # co-koa-core
-the core of the co-koa MVC decoupled into an NPM module.
-=======
+
+the core of the co-koa MVC decoupled into an NPM module. This is a component of the Co.Koa MVC toolchain.  It is designed to work in conjunction with the project installation support of co-koa-cli.  The CLI will be available to install soon.
