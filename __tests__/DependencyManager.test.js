@@ -30,9 +30,11 @@ describe('DependencyManager test', () => {
   test('.call() thrown exceptions are caught and handled', () => {
     spy = ['override'];
     const $ = DependencyManager(spy);
-    $.call();
-    expect(spy[1]).toBe('invalidDependency');
-    expect(spy[2]).toBe('test');
-    expect(spy[3].toString()).toEqual('Error: test');
+    $.call(1);
+    expect(spy[2]).toBe('invalidType');
+    expect(spy[3]).toBe('number');
+    expect(spy[4]).toBe('invalidDependency');
+    expect(spy[5]).toBe('invalidType');
+    expect(spy[6].toString()).toEqual('Error: invalidType');
   });
 });

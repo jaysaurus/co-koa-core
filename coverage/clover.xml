@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1514218896386" clover="3.2.0">
-  <project timestamp="1514218896387" name="All files">
+<coverage generated="1514316967411" clover="3.2.0">
+  <project timestamp="1514316967411" name="All files">
     <metrics statements="260" coveredstatements="260" conditionals="94" coveredconditionals="94" methods="32" coveredmethods="32" elements="386" coveredelements="386" complexity="0" loc="260" ncloc="260" packages="3" files="13" classes="13">
       <package name="lib">
         <metrics statements="94" coveredstatements="94" conditionals="32" coveredconditionals="32" methods="8" coveredmethods="8"/>
@@ -62,15 +62,15 @@
           <line num="9" count="5" type="stmt"/>
           <line num="11" count="5" type="stmt"/>
           <line num="13" count="5" type="stmt"/>
-          <line num="14" count="5" type="stmt"/>
-          <line num="15" count="4" type="cond" truecount="2" falsecount="0"/>
-          <line num="16" count="3" type="cond" truecount="2" falsecount="0"/>
-          <line num="18" count="2" type="stmt"/>
-          <line num="19" count="2" type="cond" truecount="4" falsecount="0"/>
-          <line num="20" count="1" type="stmt"/>
-          <line num="22" count="1" type="stmt"/>
-          <line num="23" count="1" type="stmt"/>
-          <line num="29" count="5" type="stmt"/>
+          <line num="14" count="5" type="cond" truecount="2" falsecount="0"/>
+          <line num="15" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="17" count="2" type="stmt"/>
+          <line num="18" count="2" type="cond" truecount="4" falsecount="0"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="21" count="2" type="stmt"/>
+          <line num="22" count="2" type="stmt"/>
+          <line num="26" count="5" type="stmt"/>
+          <line num="30" count="5" type="stmt"/>
         </file>
         <file name="ModelFactory.js" path="/home/jay/codeBase/co-koa-core/src/lib/ModelFactory.js">
           <metrics statements="28" coveredstatements="28" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="4"/>

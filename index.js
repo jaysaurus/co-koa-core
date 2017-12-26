@@ -36,12 +36,6 @@ module.exports = function CoKoaMVC (root, environment) {
     }
 
     /*
-    * SETUP MIDDLEWARE
-    */
-    const wares = Object.assign({}, middleware($.call));
-    Object.keys(wares).forEach(key => { app.use(wares[key]); });
-
-    /*
     * BUILD CONTROLLERS
     */
     Builder(conf)
@@ -61,6 +55,12 @@ module.exports = function CoKoaMVC (root, environment) {
               }
             });
       });
+
+    /*
+    * SETUP MIDDLEWARE
+    */
+    const wares = Object.assign({}, middleware($.call));
+    Object.keys(wares).forEach(key => { app.use(wares[key]); });
 
     /*
     * BOOTSTRAP
