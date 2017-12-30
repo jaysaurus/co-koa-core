@@ -5,4 +5,4 @@
 
 # co-koa-core
 
-the core of the co-koa MVC decoupled into an NPM module. This is a component of the Co.Koa MVC toolchain.  It is designed to work in conjunction with the project installation support of co-koa-cli.  The CLI will be available to install soon.
+the core of the <a href="https://github.com/jaysaurus/Co.Koa">Co.Koa</a> MVC decoupled into an NPM module. This is a component of the Co.Koa MVC toolchain.  It is designed to work in conjunction with the project installation provided by the <a href="https://github.com/jaysaurus/co-koa-cli">co-koa-cli</a>.  For more information on installation and use of co-koa-core please visit the <a href="https://github.com/jaysaurus/Co.Koa">Co.Koa</a> github project.
