@@ -47,8 +47,9 @@ module.exports = function CoKoaMVC (root, environment) {
               var routeArray = route.split(' ');
               try {
                 if (routeArray.length === 2) {
+                  const parsedPrefix = `/${(prefix.toLowerCase() === 'index') ? '' : prefix}`;
                   router[routeArray[0].toLowerCase()](
-                    '/' + prefix + routeArray[1], routes[route]);
+                    parsedPrefix + routeArray[1], routes[route]);
                 } else throw new Error();
               } catch (e) {
                 conf.logger.error(`failed to generate action "${route}": is your verb valid?'}`);
