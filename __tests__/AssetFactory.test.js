@@ -8,7 +8,7 @@ describe('AssetFactory tests both with default and without', () => {
         AssetFactory({ environment: 'test', root: __dirname.replace('__tests__', '__mocks__') })
           .build(':css')
           .loadURL('test');
-      expect(result).toBe('/public/css/test.css');
+      expect(result).toBe('/css/test.css');
     });
   test('fetch test css url using default mock conf', () => {
     const spy = [];

@@ -1,20 +1,20 @@
 module.exports = {
   development: {
-    'css': '/public/css',
-    'html': '/public/html',
-    'img': '/public/images',
-    'js': '/public/js'
+    'css': '/css',
+    'html': '/html',
+    'img': '/images',
+    'js': '/js'
   },
   test: {
-    'css': '/public/css',
-    'html': '/public/html',
-    'img': '/public/images',
-    'js': '/public/js'
+    'css': '/css',
+    'html': '/html',
+    'img': '/images',
+    'js': '/js'
   },
   production: {
     'css': '/.min/css',
-    'html': '/public/html',
-    'img': '/public/images',
+    'html': '/html',
+    'img': '/images',
     'js': '/.min/js'
   }
 };
