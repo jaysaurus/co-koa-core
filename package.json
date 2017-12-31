@@ -24,6 +24,7 @@
     "koa-bodyparser": "^4.2.0",
     "koa-hbs-renderer": "^1.2.0",
     "koa-router": "^7.3.0",
+    "koa-static": "^4.0.2",
     "lodash.clonedeep": "^4.5.0",
     "mongoose": "^4.13.7",
     "mongoose-type-number-enums": "^1.0.4",

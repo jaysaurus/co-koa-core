@@ -3,6 +3,7 @@
 const Koa = require('koa');
 const BodyParser = require('koa-bodyparser');
 const Router = require('koa-router');
+const serve = require('koa-static');
 
 module.exports = function CoKoaMVC (root, environment) {
   const Builder = require('./lib/Builder');
@@ -17,8 +18,8 @@ module.exports = function CoKoaMVC (root, environment) {
   this.launch = () => {
     const app = new Koa().use(BodyParser());
     const router = new Router();
-
     WelcomeMessage(conf).sayHello();
+    app.use(serve('public')); // serve the public folder
     const $ = DependencyManager(conf);
 
     /*
