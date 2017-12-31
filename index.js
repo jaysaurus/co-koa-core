@@ -47,7 +47,7 @@ module.exports = function CoKoaMVC (root, environment) {
               var routeArray = route.split(' ');
               try {
                 if (routeArray.length === 2) {
-                  const parsedPrefix = `/${(prefix.toLowerCase() === 'index') ? '' : prefix}`;
+                  const parsedPrefix = (prefix.toLowerCase() === 'index') ? '' : `/${prefix}`;
                   router[routeArray[0].toLowerCase()](
                     parsedPrefix + routeArray[1], routes[route]);
                 } else throw new Error();
