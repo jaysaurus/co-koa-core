@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1514742291779" clover="3.2.0">
-  <project timestamp="1514742291780" name="All files">
-    <metrics statements="260" coveredstatements="260" conditionals="94" coveredconditionals="94" methods="32" coveredmethods="32" elements="386" coveredelements="386" complexity="0" loc="260" ncloc="260" packages="3" files="13" classes="13">
+<coverage generated="1514851587403" clover="3.2.0">
+  <project timestamp="1514851587404" name="All files">
+    <metrics statements="261" coveredstatements="261" conditionals="94" coveredconditionals="94" methods="32" coveredmethods="32" elements="387" coveredelements="387" complexity="0" loc="261" ncloc="261" packages="3" files="13" classes="13">
       <package name="lib">
         <metrics statements="94" coveredstatements="94" conditionals="32" coveredconditionals="32" methods="8" coveredmethods="8"/>
         <file name="Builder.js" path="/home/jay/codeBase/co-koa-core/src/lib/Builder.js">
@@ -118,7 +118,7 @@
         </file>
       </package>
       <package name="lib.helpers">
-        <metrics statements="107" coveredstatements="107" conditionals="40" coveredconditionals="40" methods="16" coveredmethods="16"/>
+        <metrics statements="108" coveredstatements="108" conditionals="40" coveredconditionals="40" methods="16" coveredmethods="16"/>
         <file name="BuilderHelper.js" path="/home/jay/codeBase/co-koa-core/src/lib/helpers/BuilderHelper.js">
           <metrics statements="17" coveredstatements="17" conditionals="8" coveredconditionals="8" methods="3" coveredmethods="3"/>
           <line num="3" count="2" type="stmt"/>
@@ -164,7 +164,7 @@
           <line num="40" count="3" type="stmt"/>
         </file>
         <file name="DependencyManagerHelper.js" path="/home/jay/codeBase/co-koa-core/src/lib/helpers/DependencyManagerHelper.js">
-          <metrics statements="32" coveredstatements="32" conditionals="13" coveredconditionals="13" methods="1" coveredmethods="1"/>
+          <metrics statements="33" coveredstatements="33" conditionals="13" coveredconditionals="13" methods="1" coveredmethods="1"/>
           <line num="3" count="1" type="stmt"/>
           <line num="4" count="1" type="stmt"/>
           <line num="5" count="1" type="stmt"/>
@@ -180,23 +180,24 @@
           <line num="26" count="1" type="stmt"/>
           <line num="28" count="2" type="cond" truecount="2" falsecount="0"/>
           <line num="29" count="1" type="stmt"/>
-          <line num="34" count="4" type="cond" truecount="3" falsecount="0"/>
-          <line num="36" count="2" type="stmt"/>
+          <line num="30" count="1" type="stmt"/>
+          <line num="35" count="4" type="cond" truecount="3" falsecount="0"/>
           <line num="37" count="2" type="stmt"/>
-          <line num="39" count="1" type="stmt"/>
+          <line num="38" count="2" type="stmt"/>
           <line num="40" count="1" type="stmt"/>
-          <line num="42" count="1" type="stmt"/>
-          <line num="47" count="8" type="cond" truecount="5" falsecount="0"/>
-          <line num="49" count="1" type="stmt"/>
-          <line num="51" count="4" type="stmt"/>
-          <line num="53" count="1" type="stmt"/>
-          <line num="55" count="1" type="stmt"/>
-          <line num="57" count="1" type="stmt"/>
-          <line num="62" count="4" type="stmt"/>
+          <line num="41" count="1" type="stmt"/>
+          <line num="43" count="1" type="stmt"/>
+          <line num="48" count="8" type="cond" truecount="5" falsecount="0"/>
+          <line num="50" count="1" type="stmt"/>
+          <line num="52" count="4" type="stmt"/>
+          <line num="54" count="1" type="stmt"/>
+          <line num="56" count="1" type="stmt"/>
+          <line num="58" count="1" type="stmt"/>
           <line num="63" count="4" type="stmt"/>
-          <line num="64" count="1" type="stmt"/>
-          <line num="68" count="3" type="cond" truecount="2" falsecount="0"/>
-          <line num="76" count="2" type="stmt"/>
+          <line num="64" count="4" type="stmt"/>
+          <line num="65" count="1" type="stmt"/>
+          <line num="69" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="77" count="2" type="stmt"/>
         </file>
         <file name="ModelFactoryHelper.js" path="/home/jay/codeBase/co-koa-core/src/lib/helpers/ModelFactoryHelper.js">
           <metrics statements="37" coveredstatements="37" conditionals="15" coveredconditionals="15" methods="9" coveredmethods="9"/>

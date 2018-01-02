@@ -17,6 +17,7 @@ describe('DependencyManagerHelper tests', () => {
     logger: console });
   const mockParent = { call: {} };
   const helper = DependencyManagerHelper({
+    env: { mongoDB_URI: 'something' },
     factoryOverride: `${libRoot}/i18n/en.depManMessages.json`,
     logger: console,
     i18n: 'en',
