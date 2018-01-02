@@ -1,0 +1,5 @@
+{
+  "building": "Incorporating built-in middleware",
+  "success": "Middleware successfully incorporated",
+  "fail": "Failed to incorporate middleware \"{0}\": {1}"
+}

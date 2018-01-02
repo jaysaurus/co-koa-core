@@ -1,25 +1,22 @@
 'use strict';
-
 const Koa = require('koa');
 const BodyParser = require('koa-bodyparser');
 const Router = require('koa-router');
-const serve = require('koa-static');
 
 module.exports = function CoKoaMVC (root, environment) {
   const Builder = require('./lib/Builder');
+  const BuiltInMiddleware = require('./lib/BuiltInMiddleware');
   const ClientConfigFactory = require('./lib/ClientConfigFactory');
   const DependencyManager = require('./lib/DependencyManager');
   const middleware = require(`${root}/config/middleware`);
   const ModelFactory = require('./lib/ModelFactory');
   const WelcomeMessage = require('./lib/WelcomeMessage');
-
   const conf = ClientConfigFactory(root).build(environment);
 
   this.launch = () => {
     const app = new Koa().use(BodyParser());
     const router = new Router();
     WelcomeMessage(conf).sayHello();
-    app.use(serve('public')); // serve the public folder
     const $ = DependencyManager(conf);
 
     /*
@@ -30,11 +27,18 @@ module.exports = function CoKoaMVC (root, environment) {
     /*
     * SETUP VIEWS (OPTIONAL)
     */
-    if (conf.useHBS) {
+    if (conf.optionalModules) {
       const hbsOptions = require(`${root}/config/hbsConfig`);
       const renderer = require('koa-hbs-renderer');
       app.use(renderer(hbsOptions(conf)));
     }
+
+    /*
+    * SETUP MIDDLEWARE
+    */
+    BuiltInMiddleware(app, conf).build();
+    const wares = Object.assign({}, middleware($.call));
+    Object.keys(wares).forEach(key => { app.use(wares[key]); });
 
     /*
     * BUILD CONTROLLERS
@@ -53,16 +57,10 @@ module.exports = function CoKoaMVC (root, environment) {
                     parsedPrefix + routeArray[1], routes[route]);
                 } else throw new Error();
               } catch (e) {
-                conf.logger.error(`failed to generate action "${route}": is your verb valid?'}`);
+                conf.logger.error(`failed to generate action "${route}": is your verb valid?'`);
               }
             });
       });
-
-    /*
-    * SETUP MIDDLEWARE
-    */
-    const wares = Object.assign({}, middleware($.call));
-    Object.keys(wares).forEach(key => { app.use(wares[key]); });
 
     /*
     * BOOTSTRAP
