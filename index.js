@@ -2,76 +2,68 @@
 const Koa = require('koa');
 const BodyParser = require('koa-bodyparser');
 const Router = require('koa-router');
-
-module.exports = function CoKoaMVC (root, environment) {
-  const Builder = require('./lib/Builder');
-  const BuiltInMiddleware = require('./lib/BuiltInMiddleware');
-  const ClientConfigFactory = require('./lib/ClientConfigFactory');
-  const DependencyManager = require('./lib/DependencyManager');
-  const middleware = require(`${root}/config/middleware`);
-  const ModelFactory = require('./lib/ModelFactory');
-  const WelcomeMessage = require('./lib/WelcomeMessage');
-  const conf = ClientConfigFactory(root).build(environment);
-
-  this.launch = () => {
-    const app = new Koa().use(BodyParser());
-    const router = new Router();
-    WelcomeMessage(conf).sayHello();
-    const $ = DependencyManager(conf);
-
-    /*
-    * SETUP MODELS
-    */
-    ModelFactory(conf).build($.call);
-
-    /*
-    * SETUP VIEWS (OPTIONAL)
-    */
-    if (conf.optionalModules) {
-      const hbsOptions = require(`${root}/config/hbsConfig`);
-      const renderer = require('koa-hbs-renderer');
-      app.use(renderer(hbsOptions(conf)));
+const stampit = require('stampit');
+const yargs = require('yargs');
+const {argv} =
+  yargs.options({
+    environment: {
+      alias: 'e',
+      describe: 'choose the environment to run, defaults to "development"',
+      string: true
     }
+  })
+  .help()
+  .alias('help', 'h');
 
-    /*
-    * SETUP MIDDLEWARE
-    */
-    BuiltInMiddleware(app, conf).build();
-    const wares = Object.assign({}, middleware($.call));
-    Object.keys(wares).forEach(key => { app.use(wares[key]); });
+const BuiltInMiddleware = require('./lib/BuiltInMiddleware');
+const ControllerFactory = require('./lib/ControllerFactory');
+const ClientConfigFactory = require('./lib/ClientConfigFactory');
+const DependencyManager = require('./lib/DependencyManager');
+const ModelFactory = require('./lib/ModelFactory');
+const WelcomeMessage = require('./lib/WelcomeMessage');
 
-    /*
-    * BUILD CONTROLLERS
-    */
-    Builder(conf)
-      .build('Controller', (controller, prefix) => {
-        const routes = controller($.call);
-        Object.keys(routes)
-          .forEach(
-            (route) => {
-              var routeArray = route.split(' ');
-              try {
-                if (routeArray.length === 2) {
-                  const parsedPrefix = (prefix.toLowerCase() === 'index') ? '' : `/${prefix}`;
-                  router[routeArray[0].toLowerCase()](
-                    parsedPrefix + routeArray[1], routes[route]);
-                } else throw new Error();
-              } catch (e) {
-                conf.logger.error(`failed to generate action "${route}": is your verb valid?'`);
-              }
-            });
-      });
+module.exports = stampit({
+  init (root) {
+    const environment = argv['environment'] || 'development';
+    const middleware = require(`${root}/config/middleware`);
+    const conf = ClientConfigFactory(root).build(environment);
 
-    /*
-    * BOOTSTRAP
-    */
-    require(`${root}/config/bootstrap`).bootstrap($.call);
+    Object.assign(this, {
+      launch () {
+        const app = new Koa().use(BodyParser());
+        const router = new Router();
+        WelcomeMessage(conf).sayHello();
+        const $ = DependencyManager(conf);
 
-    conf.logger.log(`listening on port ${conf.env.port}`);
-    return {
-      app,
-      port: conf.env.port,
-      router
-    };
-  };
-};
+        /*
+        * SETUP MODELS
+        */
+        ModelFactory(conf).build($.call);
+
+        /*
+        * SETUP MIDDLEWARE
+        */
+        BuiltInMiddleware(app, conf).build();
+        const wares = Object.assign({}, middleware($.call));
+        Object.keys(wares).forEach(key => { app.use(wares[key]); });
+
+        /*
+        * BUILD CONTROLLERS
+        */
+        ControllerFactory(conf).build(router, $);
+
+        /*
+        * BOOTSTRAP
+        */
+        require(`${root}/config/bootstrap`).bootstrap($.call);
+
+        conf.logger.log(`listening on port ${conf.env.port}`);
+        return {
+          app,
+          port: conf.env.port,
+          router
+        };
+      }
+    });
+  }
+});
