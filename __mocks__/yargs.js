@@ -14,4 +14,4 @@ var options = function (environment) {
   return {help};
 };
 
-module.exports = {options};
+module.exports = {options, clearArgvEnvironment () { argv.environment = null; }};
