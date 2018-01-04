@@ -10,8 +10,7 @@ describe('ClientConfigFactory integration test (incorporating ClientConfigFactor
       environment: 'test',
       i18n: 'en',
       messageFolder: `${mockRoot}/i18n/`,
-      root: mockRoot,
-      useHBS: true }
+      root: mockRoot }
     Object.keys(comparison).forEach(key => {
       expect(success).toHaveProperty(key);
       expect(success[key]).toBe(comparison[key]);

@@ -7,7 +7,7 @@ describe('ClientConfigFactory integration test (incorporating ClientConfigFactor
 
   test('build clientConfig is supplied a duff helper', () => {
     expect(() => { config.build('test'); })
-      .toThrow('failed: Mock getEnvConfig threw an exception');
+      .toThrow('failed: Invalid ClientConfigHelper detected');
   });
   test('build clientConfig has an invalid echo object', () => {
     expect(() => { config.build(1); })
