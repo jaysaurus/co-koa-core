@@ -19,6 +19,15 @@ describe('ClientConfigFactoryHelper tests', () => {
       }).toThrow('Failed to create system logger, please check your Logger.js file');
   });
 
+  test('ClientConfigFactory defaults to en with no supportedLanguages', () => {
+    const config2 = ClientConfigFactoryHelper('../../__mocks__/config');
+    const success = config2.getEchoObject('test');    
+    expect(success).toHaveProperty('error');
+    expect(success).toHaveProperty('log');
+    expect(success).toHaveProperty('raw');
+    expect(success).toHaveProperty('throw');
+  });
+
   test(
     'getEchoObject invlid env throws exception', () => {
       const echo = config.getEchoObject('invalid');
