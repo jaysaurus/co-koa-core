@@ -1,0 +1,6 @@
+{
+  "failed": "Failed to initialize a plugin: {0}: {1}",
+  "invalidPlugin": "an invalid plugin was supplied to CoKoa.launch. A Plugin must be an object containing .init() method.",
+  "invalidPluginInit": "an invalid plugin was received, a plugin's .init() method was either missing or invalid.",
+  "success": "{0} of {1} Plugins have been successfully integrated."
+}

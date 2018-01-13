@@ -1,4 +1,5 @@
 'use strict';
+
 const Koa = require('koa');
 const BodyParser = require('koa-bodyparser');
 const Router = require('koa-router');
@@ -20,6 +21,7 @@ const ControllerFactory = require('./lib/ControllerFactory');
 const ClientConfigFactory = require('./lib/ClientConfigFactory');
 const DependencyManager = require('./lib/DependencyManager');
 const ModelFactory = require('./lib/ModelFactory');
+const PluginManager = require('./lib/PluginManager');
 const WelcomeMessage = require('./lib/WelcomeMessage');
 
 module.exports = stampit({
@@ -29,7 +31,7 @@ module.exports = stampit({
     const conf = ClientConfigFactory(root).build(environment);
 
     Object.assign(this, {
-      launch () {
+      launch (...plugins) {
         const app = new Koa().use(BodyParser());
         const router = new Router();
         WelcomeMessage(conf).sayHello();
@@ -40,6 +42,12 @@ module.exports = stampit({
         */
         ModelFactory(conf).build($.call);
 
+        /*
+        * PLUGINS
+        */
+        if (plugins.length) {
+          PluginManager(conf).init(app, $.call, ...plugins);
+        }
         /*
         * SETUP MIDDLEWARE
         */

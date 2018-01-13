@@ -6,6 +6,7 @@
 <a title="Co.Koa on github" href="https://jaysaurus.github.io/Co.Koa">
 <img alt="Co.Koa header" title="Co.Koa" style="margin: 0 15%; width: 70%" src="https://raw.githubusercontent.com/jaysaurus/Co.Koa/master/siteStrapCoKoa.png?sanitize=true" />
 </a>
+
 # co-koa-core
 
 the core of the [Co.Koa MVC](http://cokoajs.com) decoupled into an NPM module. This is a component of the Co.Koa MVC toolchain.  It is designed to work in conjunction with the project installation provided by the <a href="https://github.com/jaysaurus/co-koa-cli">co-koa-cli</a>.  For more information on installation and use of co-koa-core please visit the <a href="https://github.com/jaysaurus/Co.Koa">Co.Koa</a> github project.

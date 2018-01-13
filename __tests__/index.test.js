@@ -9,6 +9,7 @@ jest.mock('../lib/ControllerFactory');
 jest.mock('../lib/ClientConfigFactory');
 jest.mock('../lib/DependencyManager');
 jest.mock('../lib/ModelFactory');
+jest.mock('../lib/PluginManager');
 jest.mock('../lib/WelcomeMessage');
 
 const fakeRoot = __dirname.replace('__tests__','__mocks__')
@@ -53,6 +54,14 @@ describe('index tests', () => {
     modelFactory().setSpy(spy);
     CoKoa(fakeRoot).launch();
     expect(spy[0]).toBe('DependencyManagerCallPointer');
+  });
+
+  test('when mock plugins are supplied to the PluginManager', () => {
+    const pluginManager = require('../lib/PluginManager');
+    expect(pluginManager().wasCalled()).toBe(false);
+    
+    CoKoa(fakeRoot).launch(1,2,3);
+    expect(pluginManager().wasCalled()).toBe(true);
   });
 
   test('when middleware is supplied', () => {
