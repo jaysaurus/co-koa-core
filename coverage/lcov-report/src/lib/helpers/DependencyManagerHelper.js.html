@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>34/34</span>
+        <span class='fraction'>38/38</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/1</span>
+        <span class='fraction'>6/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>33/33</span>
+        <span class='fraction'>37/37</span>
       </div>
     </div>
   </div>
@@ -118,9 +118,7 @@
 73
 74
 75
-76
-77
-78</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+76</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -146,14 +144,13 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -166,7 +163,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -181,15 +178,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -222,54 +218,52 @@ const DependencyManagerHelper = stampit({
     this.conf = conf;
     this.echo = echo;
 &nbsp;
-    Object.assign(this, {
-      appendConfigToCallerMethod () {
-        if (!parent.call.environment) {
-          delete this.conf.env.mongoDB_URI; // safely remove connection string
-          Object.assign(parent.call, this.conf);
-        }
-      },
-&nbsp;
-      fetchFile (type, itemName) {
-        switch (type) {
-          case 'Service':
-            const service = this.getter(type, itemName);
-            return this.parseInstance(service, type, itemName);
-          case 'Validator':
-            const validator = this.getter('Model', `validators/${itemName}`);
-            return this.parseInstance(validator, type, itemName);
-          default:
-            return mongoose.models[itemName];
-        }
-      },
-&nbsp;
-      fetchToken (type) {
-        switch (type) {
-          case ':async':
-            return AsyncLibrary();
-          case ':echo':
-            return echoHandler.configure(conf);
-          case ':enums':
-            return enumsDir;
-          case ':tree':
-            return TreeAlgorithm;
-          default:
-            return assetFactory.build(type);
-        }
-      },
-&nbsp;
-      getter (type, item) {
-        try {
-          return require(`${this.conf.root}/api/${type.toLowerCase()}s/${item}`);
-        } catch (e) { this.echo.throw('failed', item); }
-      },
-&nbsp;
-      parseInstance (instance, type, itemName) {
-        return (typeof instance === 'function')
-          ? Object.assign({}, instance(parent.call))
-          : this.echo.throw('invalidDependencyFile', type, itemName);
+    this.appendConfigToCallerMethod = function () {
+      if (!parent.call.environment) {
+        delete this.conf.env.mongoDB_URI; // safely remove connection string
+        Object.assign(parent.call, this.conf);
       }
-    });
+    };
+&nbsp;
+    this.fetchFile = function (type, itemName) {
+      switch (type) {
+        case 'Service':
+          const service = this.getter(type, itemName);
+          return this.parseInstance(service, type, itemName);
+        case 'Validator':
+          const validator = this.getter('Model', `validators/${itemName}`);
+          return this.parseInstance(validator, type, itemName);
+        default:
+          return mongoose.models[itemName];
+      }
+    };
+&nbsp;
+    this.fetchToken = function (type) {
+      switch (type) {
+        case ':async':
+          return AsyncLibrary();
+        case ':echo':
+          return echoHandler.configure(conf);
+        case ':enums':
+          return enumsDir;
+        case ':tree':
+          return TreeAlgorithm;
+        default:
+          return assetFactory.build(type);
+      }
+    };
+&nbsp;
+    this.getter = function (type, item) {
+      try {
+        return require(`${this.conf.root}/api/${type.toLowerCase()}s/${item}`);
+      } catch (e) { this.echo.throw('failed', item); }
+    };
+&nbsp;
+    this.parseInstance = function (instance, type, itemName) {
+      return (typeof instance === 'function')
+        ? Object.assign({}, instance(parent.call))
+        : this.echo.throw('invalidDependencyFile', type, itemName);
+    };
   }
 });
 &nbsp;
@@ -280,7 +274,7 @@ module.exports = (conf, libDir, parent) =&gt; DependencyManagerHelper({ conf, li
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Jan 13 2018 21:10:32 GMT+0000 (GMT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 17 2018 17:10:57 GMT+0000 (GMT)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
