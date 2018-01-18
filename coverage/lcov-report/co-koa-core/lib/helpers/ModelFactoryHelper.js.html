@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>38/38</span>
+        <span class='fraction'>40/40</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>9/9</span>
+        <span class='fraction'>12/12</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>37/37</span>
+        <span class='fraction'>39/39</span>
       </div>
     </div>
   </div>
@@ -117,9 +117,7 @@
 72
 73
 74
-75
-76
-77</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+75</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -140,7 +138,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -159,7 +156,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -174,7 +171,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -186,7 +183,6 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -215,58 +211,56 @@ const ModelFactoryHelper = stampit({
       });
     }
 &nbsp;
-    Object.assign(this, {
-      bindClientModelToSchema (model, schema) {
-        return Object.keys(model).reduce((statics, key) =&gt; {
-          switch (key) {
-            case 'index':
-            case 'methods':
-              Object.assign(schema[key], model[key]);
-              break;
-            case 'statics':
-              statics = Object.keys(model[key]);
-              Object.assign(schema[key], model[key]);
-              break;
-            case 'virtuals':
-              bindVirtuals(schema, model[key]);
-              break;
-          }
-          return statics;
-        }, []);
-      },
+    this.bindClientModelToSchema = function (model, schema) {
+      return Object.keys(model).reduce((statics, key) =&gt; {
+        switch (key) {
+          case 'index':
+          case 'methods':
+            Object.assign(schema[key], model[key]);
+            break;
+          case 'statics':
+            statics = Object.keys(model[key]);
+            Object.assign(schema[key], model[key]);
+            break;
+          case 'virtuals':
+            bindVirtuals(schema, model[key]);
+            break;
+        }
+        return statics;
+      }, []);
+    };
 &nbsp;
-      buildTypeCallback (echo) {
-        return function (type, typeName) {
-          const tName = typeName.replace('models', '');
-          function newType (key, options) {
-            mongoose.SchemaType.call(this, key, options, tName);
-          }
-          if (tName[0] === tName[0].toUpperCase()) {
-            newType.prototype = Object.create(mongoose.SchemaType.prototype);
-            newType.prototype.cast = type;
-            mongoose.Schema.Types[tName] = newType;
-            return mongoose;
-          } else echo.throw('invalidTypeName', tName);
-        };
-      },
+    this.buildTypeCallback = function (echo) {
+      return function (type, typeName) {
+        const tName = typeName.replace('models', '');
+        function newType (key, options) {
+          mongoose.SchemaType.call(this, key, options, tName);
+        }
+        if (tName[0] === tName[0].toUpperCase()) {
+          newType.prototype = Object.create(mongoose.SchemaType.prototype);
+          newType.prototype.cast = type;
+          mongoose.Schema.Types[tName] = newType;
+          return mongoose;
+        } else echo.throw('invalidTypeName', tName);
+      };
+    };
 &nbsp;
-      injectSchemaObjectIds (schema) {
-        TreeAlgorithm(schema).process((it) =&gt; {
-          if (typeof it.item === 'string' &amp;&amp; it.key === 'type') {
-            switch (it.item) {
-              case 'ObjectId':
-              case 'ForeignKey':
-              case 'FK':
-                let pointer = it._out;
-                it._keyTree.forEach(key =&gt; {
-                  pointer = pointer[key]; // fastforward the pointer through linkedList
-                });
-                pointer[it.key] = mongoose.Schema.Types.ObjectId;
-            }
+    this.injectSchemaObjectIds = function (schema) {
+      TreeAlgorithm(schema).process((it) =&gt; {
+        if (typeof it.item === 'string' &amp;&amp; it.key === 'type') {
+          switch (it.item) {
+            case 'ObjectId':
+            case 'ForeignKey':
+            case 'FK':
+              let pointer = it._out;
+              it._keyTree.forEach(key =&gt; {
+                pointer = pointer[key]; // fastforward the pointer through linkedList
+              });
+              pointer[it.key] = mongoose.Schema.Types.ObjectId;
           }
-        });
-      }
-    });
+        }
+      });
+    };
   }
 });
 &nbsp;
@@ -277,7 +271,7 @@ module.exports = () =&gt; ModelFactoryHelper();
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jan 04 2018 16:50:26 GMT+0000 (GMT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jan 18 2018 12:52:33 GMT+0000 (GMT)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

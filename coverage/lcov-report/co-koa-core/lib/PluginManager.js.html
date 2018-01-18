@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for co-koa-core/lib/DependencyManager.js</title>
+    <title>Code coverage report for co-koa-core/lib/PluginManager.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,18 +16,18 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">All files</a> / <a href="index.html">co-koa-core/lib</a> DependencyManager.js
+      <a href="../../index.html">All files</a> / <a href="index.html">co-koa-core/lib</a> PluginManager.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>18/18</span>
+        <span class='fraction'>16/16</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>8/8</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>15/15</span>
+        <span class='fraction'>16/16</span>
       </div>
     </div>
   </div>
@@ -71,65 +71,62 @@
 26
 27
 28
-29
-30</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+29</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const stampit = require('stampit');
+const echoHandler = require('echo-handler');
 &nbsp;
-const stampit = require('stampit');
-&nbsp;
-const DependencyManagerHelper = require('./helpers/DependencyManagerHelper.js');
-&nbsp;
-const DependencyManager = stampit({
+module.exports = stampit({
   init (conf) {
-    const helper = DependencyManagerHelper(conf, __dirname, this);
+    const echo = echoHandler.configure({
+      factoryOverride: `${__dirname}/i18n/${conf.corei18n}.pluginManMessages.json`,
+      logger: conf.logger });
 &nbsp;
-    this.call = function (item) {
-      try {
-        if (typeof item === 'string') {
-          if (item.match(/^:/)) return helper.fetchToken(item);
-          else {
-            let type = item.match(/[A-Z]{1}[a-z]+$/);
-            if (type &amp;&amp; type.length) return helper.fetchFile(type[0], item.replace('.', '/'));
-            else helper.echo.throw('unsupported', item);
+    this.init = function (app, $, ...plugins) {
+      const result =
+        plugins.reduce((count, plugin) =&gt; {
+          try {
+            if (typeof plugin === 'object') {
+              if (typeof plugin.init === 'function') {
+                plugin.init(app, $);
+              } else echo.throw({ name: 'InvalidPluginException', message: 'invalidPluginInit' });
+            } else echo.throw({ name: 'InvalidPluginException', message: 'invalidPlugin' });
+            return --count;
+          } catch (e) {
+            echo.error('failed', e.name, e.message);
+            return count;
           }
-        } else helper.echo.throw('invalidType', typeof item);
-      } catch (e) { helper.echo.throw('invalidDependency', e.message, e); }
+        }, plugins.length);
+      echo.log('success', plugins.length - result, plugins.length);
     };
-&nbsp;
-    // hoist Object assignment, then append configuration object to the call method.
-    helper.appendConfigToCallerMethod();
   }
 });
-&nbsp;
-module.exports = conf =&gt; DependencyManager(conf);
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->

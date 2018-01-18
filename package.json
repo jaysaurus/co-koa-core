@@ -16,6 +16,7 @@
   "license": "MIT",
   "repository": "https://github.com/jaysaurus/Co.Koa",
   "dependencies": {
+    "@stamp/arg-over-prop": "^1.0.3",
     "bluebird": "^3.5.1",
     "dependencies": "0.0.1",
     "echo-handler": "^1.8.2",

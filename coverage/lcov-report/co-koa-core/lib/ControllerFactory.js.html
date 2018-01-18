@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for co-koa-core/lib/DependencyManager.js</title>
+    <title>Code coverage report for co-koa-core/lib/ControllerFactory.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,7 +16,7 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">All files</a> / <a href="index.html">co-koa-core/lib</a> DependencyManager.js
+      <a href="../../index.html">All files</a> / <a href="index.html">co-koa-core/lib</a> ControllerFactory.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
@@ -27,17 +27,17 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>8/8</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>15/15</span>
+        <span class='fraction'>17/17</span>
       </div>
     </div>
   </div>
@@ -72,64 +72,79 @@
 27
 28
 29
-30</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+30
+31
+32
+33
+34
+35</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
-&nbsp;
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Builder = require('./Builder');
+const echoHandler = require('echo-handler');
 const stampit = require('stampit');
 &nbsp;
-const DependencyManagerHelper = require('./helpers/DependencyManagerHelper.js');
-&nbsp;
-const DependencyManager = stampit({
+const ControllerFactory = stampit({
   init (conf) {
-    const helper = DependencyManagerHelper(conf, __dirname, this);
+    const echo = echoHandler.configure({
+      factoryOverride: `${__dirname}/i18n/${conf.corei18n}.controllerMessages.json`,
+      logger: conf.logger });
 &nbsp;
-    this.call = function (item) {
-      try {
-        if (typeof item === 'string') {
-          if (item.match(/^:/)) return helper.fetchToken(item);
-          else {
-            let type = item.match(/[A-Z]{1}[a-z]+$/);
-            if (type &amp;&amp; type.length) return helper.fetchFile(type[0], item.replace('.', '/'));
-            else helper.echo.throw('unsupported', item);
-          }
-        } else helper.echo.throw('invalidType', typeof item);
-      } catch (e) { helper.echo.throw('invalidDependency', e.message, e); }
+    this.build = function (router, $) {
+      Builder(conf)
+        .build('Controller', (controller, prefix) =&gt; {
+          const routes = controller($.call);
+          Object.keys(routes)
+            .forEach(
+              (route) =&gt; {
+                var routeArray = route.split(' ');
+                try {
+                  if (routeArray.length === 2) {
+                    const parsedPrefix = (prefix.toLowerCase() === 'index') ? '' : `/${prefix}`;
+                    router[routeArray[0].toLowerCase()](
+                      parsedPrefix + routeArray[1], routes[route]);
+                  } else echo.throw('badVerb', route);
+                } catch (e) {
+                  echo.error('failed', e.message);
+                }
+              });
+        });
     };
-&nbsp;
-    // hoist Object assignment, then append configuration object to the call method.
-    helper.appendConfigToCallerMethod();
   }
 });
 &nbsp;
-module.exports = conf =&gt; DependencyManager(conf);
+module.exports = conf =&gt; ControllerFactory(conf);
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
