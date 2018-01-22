@@ -51,7 +51,7 @@ module.exports = stampit({
       * SETUP MIDDLEWARE
       */
       BuiltInMiddleware(app, conf).build();
-      const wares = middleware($.call);
+      const wares = { ...middleware($.call) };
       Object.keys(wares).forEach(key => { app.use(wares[key]); });
 
       /*
