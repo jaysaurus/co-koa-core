@@ -32,7 +32,7 @@
     "npm": "^5.6.0",
     "stampit": "^4.0.2",
     "validator": "^9.2.0",
-    "yargs": "^10.0.3"
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
     "@stamp/arg-over-prop": "^1.0.3",
