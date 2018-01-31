@@ -31,11 +31,11 @@
     "mongoose-type-number-enums": "^1.0.4",
     "npm": "^5.6.0",
     "stampit": "^4.0.2",
+    "@stamp/arg-over-prop": "^1.0.3",
     "validator": "^9.2.0",
     "yargs": "^11.0.0"
   },
   "devDependencies": {
-    "@stamp/arg-over-prop": "^1.0.3",
     "coveralls": "^3.0.0",
     "jest": "22.0.6"
   },
