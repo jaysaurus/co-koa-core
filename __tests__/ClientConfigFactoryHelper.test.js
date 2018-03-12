@@ -21,7 +21,7 @@ describe('ClientConfigFactoryHelper tests', () => {
 
   test('ClientConfigFactory defaults to en with no supportedLanguages', () => {
     const config2 = ClientConfigFactoryHelper('../../__mocks__/config');
-    const success = config2.getEchoObject('test');    
+    const success = config2.getEchoObject('test');
     expect(success).toHaveProperty('error');
     expect(success).toHaveProperty('log');
     expect(success).toHaveProperty('raw');
@@ -51,5 +51,15 @@ describe('ClientConfigFactoryHelper tests', () => {
 
       expect(_spy.length).toBe(1);
       expect(_spy[0]).toBe('invalidEnv');
+  });
+
+  test(
+    'envConfig set to not use mongoose', () => {
+      const _spy = [];
+      const mockEcho = { throw: (string) => { _spy.push(string); } }
+      const config2 = ClientConfigFactoryHelper('../../__mocks__/config');
+      const result = config2.getEnvConfig(true, 'someEnvironment');
+      expect(_spy.length).toBe(0);
+      expect(result).toBe(true);
   });
 });

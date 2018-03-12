@@ -5,7 +5,8 @@ jest.mock('../lib/helpers/ModelFactoryHelper.js');
 const conf = {
   i18n: 'en',
   logger: console,
-  spy: [] // nefarious spy number 1
+  spy: [], // nefarious spy number 1
+  useMongoose: true
 }
 
 const modelFactory = ModelFactory(conf);
@@ -92,7 +93,6 @@ describe('ModelFactory tests', () => {
     }
     conf.spy[1]['Model'](test, 'Test'); //<= this call is really buildModelCallback()
     const mongoose = require('mongoose');
-
     // my second evil minion has returned from its nefarious expedition.
     expect(spy2[0]).toBe('"instantiating" the Schema object');
     expect(spy2[1]).toBe('bindClientModelToSchema was called');
@@ -107,4 +107,15 @@ describe('ModelFactory tests', () => {
         'MockModel'); //<= this call is really buildModelCallback()
     }).toThrow('noSchema: MockModel');
   });
+
+  test('build was instructed not to use mongoose', () => {
+    conf.useMongoose = false
+    modelFactory.build(observer);
+
+    // variables are unchanged because mongoose has been disabled
+    expect(conf.spy.length).toBe(2);
+    expect(conf.spy[0]['models/Type']).toBe('buildTypeCallback Called');
+    expect(typeof conf.spy[1]['Model']).toBe('function');
+  })
+
 });

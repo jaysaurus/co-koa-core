@@ -4,5 +4,6 @@
     "test": "test"
   },
   "messageFolder": "./i18n/",
-  "useHBS": true
+  "useHBS": true,
+  "useMongoose": false
 }

@@ -22,6 +22,7 @@ describe('DependencyManagerHelper tests', () => {
     logger: console,
     i18n: 'en',
     root: '../../__mocks__',
+    useMongoose: true
   }, libRoot, mockParent);
 
   test('appendConfigToCallerMethod tests', () => {
@@ -83,4 +84,27 @@ describe('DependencyManagerHelper tests', () => {
   test('small duff init test for coverage completeness', () => {
     expect(() =>{ DependencyManagerHelper() }).toThrow();
   })
+
+  test('provision for disabling mongoose and using custom model', () => {
+    const helper = DependencyManagerHelper({
+      env: { mongoDB_URI: 'something' },
+      factoryOverride: `${libRoot}/i18n/en.depManMessages.json`,
+      logger: console,
+      i18n: 'en',
+      root: '../../__mocks__',
+      useMongoose: false
+    }, libRoot, mockParent);
+    let getterCalled = false;
+    helper.getter = function (a, b) {
+      getterCalled = true;
+    }
+    let parseInstanceCalled = false;
+    helper.parseInstance = function (a, b, c) {
+      parseInstanceCalled = true;
+    }
+    // defer to same behaviour as services above
+    const nonMongooseModel = helper.fetchFile('mock','mock')
+    expect(getterCalled).toBe(true);
+    expect(parseInstanceCalled).toBe(true);
+  });
 });
