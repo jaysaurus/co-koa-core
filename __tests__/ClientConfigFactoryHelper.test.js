@@ -42,24 +42,4 @@ describe('ClientConfigFactoryHelper tests', () => {
 
       expect(success).toBe('test');
   });
-
-  test(
-    'envConfig passed invalid environment', () => {
-      const _spy = [];
-      const mockEcho = { throw: (string) => { _spy.push(string); } }
-      const error = config.getEnvConfig(false, mockEcho);
-
-      expect(_spy.length).toBe(1);
-      expect(_spy[0]).toBe('invalidEnv');
-  });
-
-  test(
-    'envConfig set to not use mongoose', () => {
-      const _spy = [];
-      const mockEcho = { throw: (string) => { _spy.push(string); } }
-      const config2 = ClientConfigFactoryHelper('../../__mocks__/config');
-      const result = config2.getEnvConfig(true, 'someEnvironment');
-      expect(_spy.length).toBe(0);
-      expect(result).toBe(true);
-  });
 });
