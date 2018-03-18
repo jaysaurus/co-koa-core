@@ -1,5 +1,4 @@
 const echoHandler = require('echo-handler');
-const mongoose = require('mongoose');
 
 jest.mock('../lib/helpers/resources/AsyncLibrary.js');
 jest.mock('../lib/helpers/resources/AssetFactory.js');
