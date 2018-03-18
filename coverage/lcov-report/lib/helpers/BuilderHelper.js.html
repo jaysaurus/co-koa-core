@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>20/20</span>
+        <span class='fraction'>22/22</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>5/5</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>20/20</span>
       </div>
     </div>
   </div>
@@ -78,16 +78,19 @@
 33
 34
 35
-36</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+36
+37</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -104,10 +107,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -119,31 +121,32 @@ const stampit = require('stampit');
 &nbsp;
 const BuilderHelper = stampit({
   init ({ conf, echo }) {
-    const nameMatchesConvention = (name, type) =&gt; name.match(`${type.replace(/^[A-Za-z]+\//, '')}$`);
+    const nameMatchesConvention = (name, type) =&gt; {
+      let t = type.replace(/^[A-Za-z]+\//, '');
+      return name.match(`${t.charAt(0).toUpperCase() + t.slice(1)}$`);
+    };
 &nbsp;
-    Object.assign(this, {
-      appendFileCommands (fileNames, type, callback) {
-        if (fileNames) {
-          const dirName = `${type.toLowerCase()}s`;
-          fileNames.forEach(fileName =&gt; {
-            const suffix = type.match(/[A-Za-z]+$/); // e.g. dir/SubDir -&gt; "SubDir"
-            const name = fileName.replace(/\.js$/, '');  // e.g. fileName.js -&gt; "fileName"
-            if (type === 'Model' || nameMatchesConvention(name, type)) {
-              const file = require(`${conf.root}/api/${dirName}/${name}`);
-              const objectName = name.replace(suffix, '');
-              callback(file, objectName);
-            } else {
-              echo.log('invalidType', fileName, dirName);
-            }
-          });
-        }
-      },
-&nbsp;
-      reduceToFiles (list, fileName) {
-        if (fileName.match(/\.js$/)) list.push(fileName);
-        return list;
+    this.appendFileCommands = function (fileNames, type, callback) {
+      if (fileNames) {
+        const dirName = `${type.toLowerCase()}s`;
+        fileNames.forEach(fileName =&gt; {
+          const suffix = type.match(/[A-Za-z]+$/); // e.g. dir/SubDir -&gt; "SubDir"
+          const name = fileName.replace(/\.js$/, '');  // e.g. fileName.js -&gt; "fileName"
+          if (type === 'Model' || nameMatchesConvention(name, type)) {
+            const file = require(`${conf.root}/api/${dirName}/${name}`);
+            const objectName = name.replace(suffix, '');
+            callback(file, objectName);
+          } else {
+            echo.log('invalidType', fileName, dirName);
+          }
+        });
       }
-    });
+    };
+&nbsp;
+    this.reduceToFiles = function (list, fileName) {
+      if (fileName.match(/\.js$/)) list.push(fileName);
+      return list;
+    };
   }
 });
 &nbsp;
@@ -154,7 +157,7 @@ module.exports = (conf, echo) =&gt; BuilderHelper({ conf, echo });
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 03 2018 18:04:50 GMT+0000 (GMT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Mar 18 2018 17:56:55 GMT+0000 (GMT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

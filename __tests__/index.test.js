@@ -8,7 +8,6 @@ jest.mock('../lib/BuiltInMiddleware');
 jest.mock('../lib/ControllerFactory');
 jest.mock('../lib/ClientConfigFactory');
 jest.mock('../lib/DependencyManager');
-jest.mock('../lib/ModelFactory');
 jest.mock('../lib/PluginManager');
 jest.mock('../lib/WelcomeMessage');
 
@@ -48,18 +47,10 @@ describe('index tests', () => {
     expect(WelcomeMessage().saidHello()).toBe(true);
   });
 
-  test('when the ModelFactory is created it should be supplied the dependencyManager call pointer`', () => {
-    const spy = [];
-    const modelFactory = require('../lib/ModelFactory');
-    modelFactory().setSpy(spy);
-    CoKoa(fakeRoot).launch();
-    expect(spy[0]).toBe('DependencyManagerCallPointer');
-  });
-
   test('when mock plugins are supplied to the PluginManager', () => {
     const pluginManager = require('../lib/PluginManager');
     expect(pluginManager().wasCalled()).toBe(false);
-    
+
     CoKoa(fakeRoot).launch(1,2,3);
     expect(pluginManager().wasCalled()).toBe(true);
   });

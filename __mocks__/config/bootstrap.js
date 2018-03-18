@@ -1,6 +1,7 @@
-module.exports = {
-  bootstrapCalled: false,
-  bootstrap: function (val) {
-    this.bootstrapCalled = true;
-  }
+const bootstrap = function (val) {
+  this.bootstrapCalled = true;
 };
+
+bootstrap.bootstrapCalled = false;
+
+module.exports = bootstrap;

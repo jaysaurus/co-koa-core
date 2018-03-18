@@ -20,7 +20,6 @@ const BuiltInMiddleware = require('./lib/BuiltInMiddleware');
 const ControllerFactory = require('./lib/ControllerFactory');
 const ClientConfigFactory = require('./lib/ClientConfigFactory');
 const DependencyManager = require('./lib/DependencyManager');
-const ModelFactory = require('./lib/ModelFactory');
 const PluginManager = require('./lib/PluginManager');
 const WelcomeMessage = require('./lib/WelcomeMessage');
 
@@ -33,13 +32,9 @@ module.exports = stampit({
     this.launch = function (...plugins) {
       const app = new Koa().use(BodyParser());
       const router = new Router();
+      app._modelRegister = {};
       WelcomeMessage(conf).sayHello();
-      const $ = DependencyManager(conf);
-
-      /*
-      * SETUP MODELS
-      */
-      ModelFactory(conf).build($.call);
+      const $ = DependencyManager({ conf, app });
 
       /*
       * PLUGINS
@@ -61,7 +56,8 @@ module.exports = stampit({
       /*
       * BOOTSTRAP
       */
-      require(`${root}/config/bootstrap`).bootstrap($.call);
+      const bootstrap = require(`${root}/config/bootstrap`);
+      bootstrap($.call);
 
       conf.logger.log(`listening on port ${conf.env.port}`);
       return {
