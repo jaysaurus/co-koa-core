@@ -1,0 +1,10 @@
+{
+  "defaultLanguage": "xx",
+  "dependencyRegister": { "test": "test" },
+  "environment": {
+    "test": "test"
+  },
+  "messageFolder": "./i18n/",
+  "useHBS": true,
+  "useMongoose": false
+}

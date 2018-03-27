@@ -17,8 +17,13 @@ describe('DependencyManagerHelper tests', () => {
   const echo = echoHandler.configure({
     factoryOverride: `${libRoot}/i18n/en.depManMessages.json`,
     logger: console });
-  const mockParent = { call: {} };
-  const helper = DependencyManagerHelper({ conf: {
+  const spies = { dependencySpy: [] };
+  const mockParent = { call: {
+    depSpy (val) {
+      spies.dependencySpy.push(val);
+    }
+  } };
+  var helper = DependencyManagerHelper({ conf: {
     corei18n: 'en',
     env: { mongoDB_URI: 'something' },
     factoryOverride: `${libRoot}/i18n/en.depManMessages.json`,
@@ -54,6 +59,26 @@ describe('DependencyManagerHelper tests', () => {
     }).toThrow(echo.raw('failed', 'Invalid'));
   })
 
+  test('fetchFile uses dependencyRegister', () => {
+    const helper = DependencyManagerHelper({ conf: {
+      corei18n: 'en',
+      dependencyRegister: { Baloney: 'phoney' },
+      env: { mongoDB_URI: 'something' },
+      factoryOverride: `${libRoot}/i18n/en.depManMessages.json`,
+      logger: console,
+      i18n: 'en',
+      root: '../../__mocks__',
+      app
+    }, libRoot, parent: mockParent, app });
+    expect(helper.fetchFile('Baloney', 'FooBaloney')).toBe('Success');
+    helper.fetchFile('Baloney', 'BarBaloney');
+    expect(spies.dependencySpy[0]).toBe('barBaloney Called');
+    expect(helper.fetchFile('Baloney', 'FozBaloney')).toBe('success');
+    expect(() => { helper.fetchFile('Baloney', 'basBaloney'); }).toThrow('failed');
+
+    expect(() => { helper.fetchFile('Other', 'Unknown'); }).toThrow();
+  });
+
   test('fetchFile calls different types of models based on app property', () => {
     helper.getter = (type, item) => {
       return type
@@ -86,7 +111,6 @@ describe('DependencyManagerHelper tests', () => {
     app._modelRegister.mongoose = itemName => { return undefined }
     expect(helper.fetchFile('mock','mock')).toEqual({ _modelType: 'mongoose' });
   });
-
 
   test('fetchFile receives invalid _modelRegister callback', () => {
     const spy = []

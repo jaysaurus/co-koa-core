@@ -42,4 +42,13 @@ describe('ClientConfigFactoryHelper tests', () => {
 
       expect(success).toBe('test');
   });
+  test(
+    'getDependencyRegister returns an object however it is defined (or otherwise)', () => {
+      const conf3 = ClientConfigFactoryHelper('../../__mocks__/config/config');
+      const noConfig = config.getDependencyRegister();
+      expect(noConfig).toEqual({});
+      const hasConfig = conf3.getDependencyRegister();
+      expect(hasConfig.test).toBe('test');
+    }
+  )
 });
