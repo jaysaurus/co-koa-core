@@ -1,0 +1,6 @@
+src/
+__tests__/
+__mocks__/
+lib/__mocks__
+lib/helpers/__mocks__
+lib/helpers/resources/__mocks__
