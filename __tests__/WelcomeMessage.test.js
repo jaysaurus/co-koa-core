@@ -6,24 +6,17 @@ jest.mock('fs');
 
 describe('WelcomeMessage tests', () => {
   test(
-    'sayHello renders WelcomeMessage.text if environment is development', () => {
+    'sayHello renders WelcomeMessage.text if welcomeMessage is true', () => {
       let expected = `test: Server launched at: ${new Date()}`
       let observer = '';
-      welcomeMessage({ environment: 'development' }).sayHello((str) => { observer += str });
-      expect(observer).toBe(expected);
-    });
-  test(
-    'sayHello renders WelcomeMessage.text if environment is test', () => {
-      let expected = `test: Server launched at: ${new Date()}`
-      let observer = '';
-      welcomeMessage({ environment: 'test' }).sayHello((str) => { observer += str });
+      welcomeMessage({ welcomeMessage: true }).sayHello((str) => { observer += str });
       expect(observer).toBe(expected);
     });
   test(
     'sayHello throws a short message rather than read from a file', () => {
       require('fs').__setReadFileSyncToThrow(true);
       let observer = '';
-      welcomeMessage({ environment: 'test' }).sayHello((str) => { observer += str });
+      welcomeMessage({ welcomeMessage: true }).sayHello((str) => { observer += str });
       expect(observer).toBe(`-- Welcome to Co.Koa --Server launched at: ${new Date()}`);
     });
   test(

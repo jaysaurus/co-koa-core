@@ -12,9 +12,8 @@ const {argv} =
       describe: 'choose the environment to run, defaults to "development"',
       string: true
     }
-  })
-  .help()
-  .alias('help', 'h');
+  }).help()
+    .alias('help', 'h');
 
 const BuiltInMiddleware = require('./lib/BuiltInMiddleware');
 const ControllerFactory = require('./lib/ControllerFactory');
@@ -34,6 +33,7 @@ module.exports = stampit({
       const router = new Router();
       app._modelRegister = {};
       WelcomeMessage(conf).sayHello();
+
       const $ = DependencyManager({ conf, app });
 
       /*
@@ -42,12 +42,14 @@ module.exports = stampit({
       if (plugins.length) {
         PluginManager(conf).init(app, $.call, ...plugins);
       }
+
       /*
       * SETUP MIDDLEWARE
       */
       BuiltInMiddleware(app, conf).build();
       const wares = middleware($.call);
       Object.keys(wares).forEach(key => { app.use(wares[key]); });
+
       /*
       * BUILD CONTROLLERS
       */
