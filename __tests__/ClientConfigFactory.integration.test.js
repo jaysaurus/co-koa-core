@@ -42,7 +42,9 @@ describe('ClientConfigFactory integration test (incorporating ClientConfigFactor
     ClientConfig = require('../lib/ClientConfig.js')
     clientConf = ClientConfig();
     Object.keys(clientConf).forEach(key => {
-      expect(clientConf[key]).toBeNull();
+      if (key != 'welcomeMessage') {
+        expect(clientConf[key]).toBeNull();
+      }
     });
   })
 });
