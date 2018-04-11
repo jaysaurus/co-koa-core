@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1523440115558" clover="3.2.0">
-  <project timestamp="1523440115558" name="All files">
+<coverage generated="1523440589886" clover="3.2.0">
+  <project timestamp="1523440589886" name="All files">
     <metrics statements="273" coveredstatements="273" conditionals="96" coveredconditionals="96" methods="40" coveredmethods="40" elements="409" coveredelements="409" complexity="0" loc="273" ncloc="273" packages="4" files="14" classes="14">
       <package name="co-koa-core">
         <metrics statements="32" coveredstatements="32" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
