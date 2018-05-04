@@ -65,7 +65,8 @@ module.exports = stampit({
       return {
         app,
         port: conf.env.port,
-        router
+        router,
+        $: (environment === 'test' ? $.call : {})
       };
     };
   }
