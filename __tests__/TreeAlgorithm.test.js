@@ -23,9 +23,10 @@ const tree = {
         }
       },
       b1_4: 'b1_4'
-    }
+    },
   },
-  c: 'c'
+  c: 'String',
+  d: [{ andMe: 'too?' }]
 };
 
 describe('TreeAlgorithm test', () => {
@@ -47,6 +48,8 @@ describe('TreeAlgorithm test', () => {
     expect(keyObserver[5]).toEqual([ 'b', 'b1', 'b1_3' ]);
     expect(keyObserver[6]).toEqual([ 'b', 'b1', 'b1_3', 'b1_3_2', 'b_deep', 'deeper' ]);
     expect(keyObserver[7]).toEqual([ 'b', 'b1' ]);
+    expect(keyObserver[8]).toEqual([]);
+    expect(keyObserver[9]).toEqual([ 'd', '0' ]);
     expect(outObserver).toBe(tree);
   });
 });
