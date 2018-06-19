@@ -39,7 +39,6 @@ describe('TreeAlgorithm test', () => {
       }, []));
       if (!outObserver) outObserver = it._out
     });
-    console.log(keyObserver);
     expect(keyObserver[0]).toEqual([ 'a' ]);
     expect(keyObserver[1]).toEqual([ 'a' ]);
     expect(keyObserver[2]).toEqual([ 'a', 'a3', 'a3_1', 'a3_1_1' ]);
