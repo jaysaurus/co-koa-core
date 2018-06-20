@@ -40,7 +40,7 @@ describe('how build assigns closure actions to multiple files in a directory', (
     Builder(conf).build('Controller', (fake, objName) => {
       test.push(fake)
       test.push(objName);
-    });
+    }, false);
     expect(test.length).toBe(4);
     expect(test[0]).toMatch('I am the 1st fake file');
     expect(test[1]).toBe('test1');

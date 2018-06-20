@@ -80,6 +80,7 @@ describe('index tests', () => {
     expect(result.router.IAmARouter).toBe(true);
   });
 
+
   test('when argv environment is cleared the default development should be used', () => {
     require('yargs').clearArgvEnvironment();
     const configSpy = [];
@@ -88,4 +89,10 @@ describe('index tests', () => {
     const spy = configSpy;
     expect(spy[0]).toBe('development');
   });
+
+  test('when argv is cleared, an empty object is returned because environment is not test', () => {
+    require('yargs').clearArgvEnvironment();
+    const result = CoKoa(fakeRoot).launch();
+    expect(typeof result.$).toBe('object');
+  })
 });

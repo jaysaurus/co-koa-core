@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1529371814547" clover="3.2.0">
-  <project timestamp="1529371814548" name="All files">
-    <metrics statements="275" coveredstatements="275" conditionals="98" coveredconditionals="97" methods="40" coveredmethods="40" elements="413" coveredelements="412" complexity="0" loc="275" ncloc="275" packages="4" files="14" classes="14">
+<coverage generated="1529526997534" clover="3.2.0">
+  <project timestamp="1529526997534" name="All files">
+    <metrics statements="275" coveredstatements="275" conditionals="98" coveredconditionals="98" methods="40" coveredmethods="40" elements="413" coveredelements="413" complexity="0" loc="275" ncloc="275" packages="4" files="14" classes="14">
       <package name="src">
-        <metrics statements="32" coveredstatements="32" conditionals="6" coveredconditionals="5" methods="2" coveredmethods="2"/>
+        <metrics statements="32" coveredstatements="32" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
         <file name="index.js" path="/home/jay/codeBase/co-koa-core/src/index.js">
-          <metrics statements="32" coveredstatements="32" conditionals="6" coveredconditionals="5" methods="2" coveredmethods="2"/>
+          <metrics statements="32" coveredstatements="32" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
           <line num="3" count="1" type="stmt"/>
           <line num="4" count="1" type="stmt"/>
           <line num="5" count="1" type="stmt"/>
@@ -19,25 +19,25 @@
           <line num="22" count="1" type="stmt"/>
           <line num="23" count="1" type="stmt"/>
           <line num="25" count="1" type="stmt"/>
-          <line num="27" count="9" type="cond" truecount="2" falsecount="0"/>
-          <line num="28" count="9" type="stmt"/>
-          <line num="29" count="9" type="stmt"/>
-          <line num="31" count="9" type="stmt"/>
-          <line num="32" count="7" type="stmt"/>
-          <line num="33" count="7" type="stmt"/>
-          <line num="34" count="7" type="stmt"/>
-          <line num="35" count="7" type="stmt"/>
-          <line num="37" count="7" type="stmt"/>
-          <line num="42" count="7" type="cond" truecount="2" falsecount="0"/>
+          <line num="27" count="10" type="cond" truecount="2" falsecount="0"/>
+          <line num="28" count="10" type="stmt"/>
+          <line num="29" count="10" type="stmt"/>
+          <line num="31" count="10" type="stmt"/>
+          <line num="32" count="8" type="stmt"/>
+          <line num="33" count="8" type="stmt"/>
+          <line num="34" count="8" type="stmt"/>
+          <line num="35" count="8" type="stmt"/>
+          <line num="37" count="8" type="stmt"/>
+          <line num="42" count="8" type="cond" truecount="2" falsecount="0"/>
           <line num="43" count="1" type="stmt"/>
-          <line num="49" count="7" type="stmt"/>
-          <line num="50" count="7" type="stmt"/>
-          <line num="51" count="7" type="stmt"/>
-          <line num="56" count="7" type="stmt"/>
-          <line num="61" count="7" type="stmt"/>
-          <line num="62" count="7" type="stmt"/>
-          <line num="64" count="7" type="stmt"/>
-          <line num="65" count="7" type="stmt"/>
+          <line num="49" count="8" type="stmt"/>
+          <line num="50" count="8" type="stmt"/>
+          <line num="51" count="8" type="stmt"/>
+          <line num="56" count="8" type="stmt"/>
+          <line num="61" count="8" type="stmt"/>
+          <line num="62" count="8" type="stmt"/>
+          <line num="64" count="8" type="stmt"/>
+          <line num="65" count="8" type="stmt"/>
         </file>
       </package>
       <package name="src.lib">
