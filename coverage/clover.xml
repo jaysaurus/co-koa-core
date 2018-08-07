@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1529526997534" clover="3.2.0">
-  <project timestamp="1529526997534" name="All files">
+<coverage generated="1533680230530" clover="3.2.0">
+  <project timestamp="1533680230530" name="All files">
     <metrics statements="275" coveredstatements="275" conditionals="98" coveredconditionals="98" methods="40" coveredmethods="40" elements="413" coveredelements="413" complexity="0" loc="275" ncloc="275" packages="4" files="14" classes="14">
       <package name="src">
         <metrics statements="32" coveredstatements="32" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
@@ -189,23 +189,23 @@
           <line num="5" count="2" type="stmt"/>
           <line num="7" count="2" type="stmt"/>
           <line num="9" count="5" type="stmt"/>
+          <line num="10" count="5" type="stmt"/>
           <line num="11" count="5" type="stmt"/>
-          <line num="12" count="5" type="stmt"/>
-          <line num="13" count="5" type="cond" truecount="2" falsecount="0"/>
-          <line num="17" count="5" type="stmt"/>
-          <line num="19" count="5" type="stmt"/>
+          <line num="12" count="5" type="cond" truecount="2" falsecount="0"/>
+          <line num="16" count="5" type="stmt"/>
+          <line num="18" count="5" type="stmt"/>
+          <line num="19" count="9" type="stmt"/>
           <line num="20" count="9" type="stmt"/>
-          <line num="21" count="9" type="stmt"/>
-          <line num="22" count="9" type="cond" truecount="2" falsecount="0"/>
+          <line num="21" count="9" type="cond" truecount="2" falsecount="0"/>
+          <line num="22" count="7" type="stmt"/>
           <line num="23" count="7" type="stmt"/>
-          <line num="24" count="7" type="stmt"/>
-          <line num="25" count="2" type="stmt"/>
-          <line num="28" count="5" type="stmt"/>
-          <line num="30" count="7" type="stmt"/>
-          <line num="35" count="2" type="stmt"/>
-          <line num="38" count="4" type="cond" truecount="2" falsecount="0"/>
-          <line num="43" count="3" type="stmt"/>
-          <line num="51" count="5" type="stmt"/>
+          <line num="24" count="2" type="stmt"/>
+          <line num="27" count="5" type="stmt"/>
+          <line num="29" count="7" type="stmt"/>
+          <line num="34" count="2" type="stmt"/>
+          <line num="37" count="4" type="cond" truecount="2" falsecount="0"/>
+          <line num="42" count="3" type="stmt"/>
+          <line num="50" count="5" type="stmt"/>
         </file>
         <file name="DependencyManagerHelper.js" path="/home/jay/codeBase/co-koa-core/src/lib/helpers/DependencyManagerHelper.js">
           <metrics statements="48" coveredstatements="48" conditionals="27" coveredconditionals="27" methods="7" coveredmethods="7"/>
