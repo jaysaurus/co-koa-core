@@ -29,7 +29,8 @@ module.exports = stampit({
     const conf = ClientConfigFactory(root).build(environment);
 
     this.launch = function (...plugins) {
-      const app = new Koa().use(BodyParser());
+      const app = new Koa().use(BodyParser(conf.bodyParser));
+      delete conf.bodyParser;
       const router = new Router();
       app._modelRegister = {};
       WelcomeMessage(conf).sayHello();
