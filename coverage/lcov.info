@@ -1,5 +1,5 @@
 TN:
-SF:/home/jay/codeBase/node/co-koa-core/index.js
+SF:/home/jay/codeBase/co-koa-core/src/index.js
 FN:31,(anonymous_0)
 FN:52,(anonymous_1)
 FNF:2
@@ -51,7 +51,7 @@ BRF:6
 BRH:6
 end_of_record
 TN:
-SF:/home/jay/codeBase/node/co-koa-core/lib/Builder.js
+SF:/home/jay/codeBase/co-koa-core/src/lib/Builder.js
 FN:17,(anonymous_0)
 FN:38,(anonymous_1)
 FNF:2
@@ -84,7 +84,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
-SF:/home/jay/codeBase/node/co-koa-core/lib/ClientConfig.js
+SF:/home/jay/codeBase/co-koa-core/src/lib/ClientConfig.js
 FNF:0
 FNH:0
 DA:3,2
@@ -95,7 +95,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/jay/codeBase/node/co-koa-core/lib/ClientConfigFactory.js
+SF:/home/jay/codeBase/co-koa-core/src/lib/ClientConfigFactory.js
 FN:12,(anonymous_0)
 FN:46,(anonymous_1)
 FNF:2
@@ -131,7 +131,7 @@ BRF:8
 BRH:8
 end_of_record
 TN:
-SF:/home/jay/codeBase/node/co-koa-core/lib/ControllerFactory.js
+SF:/home/jay/codeBase/co-koa-core/src/lib/ControllerFactory.js
 FN:11,(anonymous_0)
 FN:13,(anonymous_1)
 FN:17,(anonymous_2)
@@ -170,7 +170,7 @@ BRF:4
 BRH:4
 end_of_record
 TN:
-SF:/home/jay/codeBase/node/co-koa-core/lib/DependencyManager.js
+SF:/home/jay/codeBase/co-koa-core/src/lib/DependencyManager.js
 FN:11,(anonymous_0)
 FNF:1
 FNH:1
@@ -203,7 +203,7 @@ BRF:8
 BRH:8
 end_of_record
 TN:
-SF:/home/jay/codeBase/node/co-koa-core/lib/PluginManager.js
+SF:/home/jay/codeBase/co-koa-core/src/lib/PluginManager.js
 FN:10,(anonymous_0)
 FN:12,(anonymous_1)
 FNF:2
@@ -236,7 +236,7 @@ BRF:4
 BRH:4
 end_of_record
 TN:
-SF:/home/jay/codeBase/node/co-koa-core/lib/WelcomeMessage.js
+SF:/home/jay/codeBase/co-koa-core/src/lib/WelcomeMessage.js
 FN:8,(anonymous_0)
 FN:24,(anonymous_1)
 FNF:2
@@ -264,7 +264,7 @@ BRF:5
 BRH:5
 end_of_record
 TN:
-SF:/home/jay/codeBase/node/co-koa-core/lib/helpers/BuilderHelper.js
+SF:/home/jay/codeBase/co-koa-core/src/lib/helpers/BuilderHelper.js
 FN:7,(anonymous_0)
 FN:12,(anonymous_1)
 FN:15,(anonymous_2)
@@ -311,7 +311,7 @@ BRF:8
 BRH:8
 end_of_record
 TN:
-SF:/home/jay/codeBase/node/co-koa-core/lib/helpers/ClientConfigFactoryHelper.js
+SF:/home/jay/codeBase/co-koa-core/src/lib/helpers/ClientConfigFactoryHelper.js
 FN:18,(anonymous_0)
 FN:23,(anonymous_1)
 FN:50,(anonymous_2)
@@ -354,7 +354,7 @@ BRF:6
 BRH:6
 end_of_record
 TN:
-SF:/home/jay/codeBase/node/co-koa-core/lib/helpers/DependencyManagerHelper.js
+SF:/home/jay/codeBase/co-koa-core/src/lib/helpers/DependencyManagerHelper.js
 FN:26,dependencyGetter
 FN:28,(anonymous_1)
 FN:38,modelGetter
@@ -452,7 +452,7 @@ BRF:27
 BRH:27
 end_of_record
 TN:
-SF:/home/jay/codeBase/node/co-koa-core/lib/helpers/resources/AssetFactory.js
+SF:/home/jay/codeBase/co-koa-core/src/lib/helpers/resources/AssetFactory.js
 FN:16,(anonymous_0)
 FN:33,(anonymous_1)
 FNF:2
@@ -487,7 +487,7 @@ BRF:6
 BRH:6
 end_of_record
 TN:
-SF:/home/jay/codeBase/node/co-koa-core/lib/helpers/resources/AsyncLibrary.js
+SF:/home/jay/codeBase/co-koa-core/src/lib/helpers/resources/AsyncLibrary.js
 FN:11,(anonymous_0)
 FN:18,(anonymous_1)
 FN:26,(anonymous_2)
@@ -515,7 +515,7 @@ BRF:4
 BRH:4
 end_of_record
 TN:
-SF:/home/jay/codeBase/node/co-koa-core/lib/helpers/resources/TreeAlgorithm.js
+SF:/home/jay/codeBase/co-koa-core/src/lib/helpers/resources/TreeAlgorithm.js
 FN:11,processNextItem
 FN:27,processObjectNode
 FN:40,(anonymous_2)

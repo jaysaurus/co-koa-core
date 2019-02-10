@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1536332587500" clover="3.2.0">
-  <project timestamp="1536332587500" name="All files">
+<coverage generated="1549771065545" clover="3.2.0">
+  <project timestamp="1549771065545" name="All files">
     <metrics statements="276" coveredstatements="276" conditionals="100" coveredconditionals="100" methods="40" coveredmethods="40" elements="416" coveredelements="416" complexity="0" loc="276" ncloc="276" packages="4" files="14" classes="14">
-      <package name="co-koa-core">
+      <package name="src">
         <metrics statements="33" coveredstatements="33" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
-        <file name="index.js" path="/home/jay/codeBase/node/co-koa-core/index.js">
+        <file name="index.js" path="/home/jay/codeBase/co-koa-core/src/index.js">
           <metrics statements="33" coveredstatements="33" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
           <line num="3" count="1" type="stmt"/>
           <line num="4" count="1" type="stmt"/>
@@ -41,9 +41,9 @@
           <line num="66" count="8" type="stmt"/>
         </file>
       </package>
-      <package name="co-koa-core.lib">
+      <package name="src.lib">
         <metrics statements="93" coveredstatements="93" conditionals="31" coveredconditionals="31" methods="13" coveredmethods="13"/>
-        <file name="Builder.js" path="/home/jay/codeBase/node/co-koa-core/lib/Builder.js">
+        <file name="Builder.js" path="/home/jay/codeBase/co-koa-core/src/lib/Builder.js">
           <metrics statements="18" coveredstatements="18" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
           <line num="3" count="1" type="stmt"/>
           <line num="4" count="1" type="stmt"/>
@@ -64,12 +64,12 @@
           <line num="33" count="1" type="stmt"/>
           <line num="38" count="2" type="stmt"/>
         </file>
-        <file name="ClientConfig.js" path="/home/jay/codeBase/node/co-koa-core/lib/ClientConfig.js">
+        <file name="ClientConfig.js" path="/home/jay/codeBase/co-koa-core/src/lib/ClientConfig.js">
           <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
           <line num="3" count="2" type="stmt"/>
           <line num="5" count="2" type="stmt"/>
         </file>
-        <file name="ClientConfigFactory.js" path="/home/jay/codeBase/node/co-koa-core/lib/ClientConfigFactory.js">
+        <file name="ClientConfigFactory.js" path="/home/jay/codeBase/co-koa-core/src/lib/ClientConfigFactory.js">
           <metrics statements="15" coveredstatements="15" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
           <line num="3" count="2" type="stmt"/>
           <line num="5" count="2" type="stmt"/>
@@ -87,7 +87,7 @@
           <line num="37" count="2" type="stmt"/>
           <line num="46" count="3" type="stmt"/>
         </file>
-        <file name="ControllerFactory.js" path="/home/jay/codeBase/node/co-koa-core/lib/ControllerFactory.js">
+        <file name="ControllerFactory.js" path="/home/jay/codeBase/co-koa-core/src/lib/ControllerFactory.js">
           <metrics statements="18" coveredstatements="18" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
           <line num="1" count="1" type="stmt"/>
           <line num="2" count="1" type="stmt"/>
@@ -108,7 +108,7 @@
           <line num="30" count="1" type="stmt"/>
           <line num="38" count="1" type="stmt"/>
         </file>
-        <file name="DependencyManager.js" path="/home/jay/codeBase/node/co-koa-core/lib/DependencyManager.js">
+        <file name="DependencyManager.js" path="/home/jay/codeBase/co-koa-core/src/lib/DependencyManager.js">
           <metrics statements="14" coveredstatements="14" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
           <line num="3" count="1" type="stmt"/>
           <line num="5" count="1" type="stmt"/>
@@ -125,7 +125,7 @@
           <line num="21" count="2" type="stmt"/>
           <line num="25" count="5" type="stmt"/>
         </file>
-        <file name="PluginManager.js" path="/home/jay/codeBase/node/co-koa-core/lib/PluginManager.js">
+        <file name="PluginManager.js" path="/home/jay/codeBase/co-koa-core/src/lib/PluginManager.js">
           <metrics statements="16" coveredstatements="16" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
           <line num="1" count="1" type="stmt"/>
           <line num="2" count="1" type="stmt"/>
@@ -144,7 +144,7 @@
           <line num="22" count="2" type="stmt"/>
           <line num="25" count="3" type="stmt"/>
         </file>
-        <file name="WelcomeMessage.js" path="/home/jay/codeBase/node/co-koa-core/lib/WelcomeMessage.js">
+        <file name="WelcomeMessage.js" path="/home/jay/codeBase/co-koa-core/src/lib/WelcomeMessage.js">
           <metrics statements="10" coveredstatements="10" conditionals="5" coveredconditionals="5" methods="2" coveredmethods="2"/>
           <line num="3" count="1" type="stmt"/>
           <line num="4" count="1" type="stmt"/>
@@ -158,9 +158,9 @@
           <line num="24" count="4" type="stmt"/>
         </file>
       </package>
-      <package name="co-koa-core.lib.helpers">
+      <package name="src.lib.helpers">
         <metrics statements="90" coveredstatements="90" conditionals="41" coveredconditionals="41" methods="15" coveredmethods="15"/>
-        <file name="BuilderHelper.js" path="/home/jay/codeBase/node/co-koa-core/lib/helpers/BuilderHelper.js">
+        <file name="BuilderHelper.js" path="/home/jay/codeBase/co-koa-core/src/lib/helpers/BuilderHelper.js">
           <metrics statements="20" coveredstatements="20" conditionals="8" coveredconditionals="8" methods="5" coveredmethods="5"/>
           <line num="3" count="2" type="stmt"/>
           <line num="5" count="2" type="stmt"/>
@@ -183,7 +183,7 @@
           <line num="31" count="5" type="stmt"/>
           <line num="36" count="3" type="stmt"/>
         </file>
-        <file name="ClientConfigFactoryHelper.js" path="/home/jay/codeBase/node/co-koa-core/lib/helpers/ClientConfigFactoryHelper.js">
+        <file name="ClientConfigFactoryHelper.js" path="/home/jay/codeBase/co-koa-core/src/lib/helpers/ClientConfigFactoryHelper.js">
           <metrics statements="22" coveredstatements="22" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="3"/>
           <line num="3" count="2" type="stmt"/>
           <line num="4" count="2" type="stmt"/>
@@ -208,7 +208,7 @@
           <line num="42" count="3" type="stmt"/>
           <line num="50" count="5" type="stmt"/>
         </file>
-        <file name="DependencyManagerHelper.js" path="/home/jay/codeBase/node/co-koa-core/lib/helpers/DependencyManagerHelper.js">
+        <file name="DependencyManagerHelper.js" path="/home/jay/codeBase/co-koa-core/src/lib/helpers/DependencyManagerHelper.js">
           <metrics statements="48" coveredstatements="48" conditionals="27" coveredconditionals="27" methods="7" coveredmethods="7"/>
           <line num="3" count="1" type="stmt"/>
           <line num="4" count="1" type="stmt"/>
@@ -260,9 +260,9 @@
           <line num="90" count="3" type="cond" truecount="2" falsecount="0"/>
         </file>
       </package>
-      <package name="co-koa-core.lib.helpers.resources">
+      <package name="src.lib.helpers.resources">
         <metrics statements="60" coveredstatements="60" conditionals="22" coveredconditionals="22" methods="10" coveredmethods="10"/>
-        <file name="AssetFactory.js" path="/home/jay/codeBase/node/co-koa-core/lib/helpers/resources/AssetFactory.js">
+        <file name="AssetFactory.js" path="/home/jay/codeBase/co-koa-core/src/lib/helpers/resources/AssetFactory.js">
           <metrics statements="16" coveredstatements="16" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
           <line num="3" count="2" type="stmt"/>
           <line num="4" count="2" type="stmt"/>
@@ -281,7 +281,7 @@
           <line num="26" count="1" type="stmt"/>
           <line num="33" count="4" type="stmt"/>
         </file>
-        <file name="AsyncLibrary.js" path="/home/jay/codeBase/node/co-koa-core/lib/helpers/resources/AsyncLibrary.js">
+        <file name="AsyncLibrary.js" path="/home/jay/codeBase/co-koa-core/src/lib/helpers/resources/AsyncLibrary.js">
           <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
           <line num="3" count="1" type="stmt"/>
           <line num="5" count="1" type="stmt"/>
@@ -293,7 +293,7 @@
           <line num="21" count="1" type="stmt"/>
           <line num="26" count="1" type="stmt"/>
         </file>
-        <file name="TreeAlgorithm.js" path="/home/jay/codeBase/node/co-koa-core/lib/helpers/resources/TreeAlgorithm.js">
+        <file name="TreeAlgorithm.js" path="/home/jay/codeBase/co-koa-core/src/lib/helpers/resources/TreeAlgorithm.js">
           <metrics statements="35" coveredstatements="35" conditionals="12" coveredconditionals="12" methods="5" coveredmethods="5"/>
           <line num="3" count="2" type="stmt"/>
           <line num="4" count="2" type="stmt"/>
