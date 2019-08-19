@@ -34,7 +34,7 @@
   "devDependencies": {
     "coveralls": "^3.0.1",
     "jest": "23.4.2",
-    "semistandard": "^13.0.0"
+    "semistandard": "^14.0.0"
   },
   "greenkeeper": {
     "ignore": [
