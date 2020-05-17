@@ -16,7 +16,7 @@
   "license": "MIT",
   "repository": "https://github.com/jaysaurus/Co.Koa",
   "dependencies": {
-    "@koa/cors": "^2.2.1",
+    "@koa/cors": "^3.1.0",
     "@stamp/arg-over-prop": "^1.0.4",
     "dependencies": "0.0.1",
     "echo-handler": "^1.8.2",
